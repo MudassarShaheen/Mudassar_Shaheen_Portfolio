@@ -1,22 +1,41 @@
-import ProjectCard from "./ProjectCard";
 import { Glasses } from "lucide-react";
 
 const vrProjects = [
   {
-    title: "Immersive Meditation",
-    description: "A calming VR experience designed for Meta Quest that guides users through peaceful environments with guided meditation sessions and biofeedback integration.",
+    title: "Immersive Meditation in VR",
+    description: "A calming VR experience designed for Meta Quest that guides users through peaceful environments with guided meditation sessions.",
     tags: ["Meta Quest", "Wellness", "VR", "Oculus"],
+    videoUrl: "https://www.youtube.com/embed/VrpOE-4iQU8",
   },
   {
-    title: "VR Physics Interactions",
-    description: "Technical demonstration of advanced physics-based interactions in VR, featuring realistic object manipulation, hand tracking, and haptic feedback systems.",
-    tags: ["Meta Quest", "Physics", "Hand Tracking", "Oculus"],
+    title: "VR Physics and Rigidbody Interaction",
+    description: "Technical demonstration of advanced physics-based interactions in VR, featuring realistic object manipulation with physical hands.",
+    tags: ["Meta Quest", "Physics", "Hand Tracking"],
+    videoUrl: "https://www.youtube.com/embed/UKLCynXzaf8",
+  },
+  {
+    title: "Unity VR Physics Interaction",
+    description: "Showcasing VR physics interaction development for Metaverse and Oculus Quest 2 environments.",
+    tags: ["Unity", "VR Development", "Metaverse"],
+    videoUrl: "https://www.youtube.com/embed/e3kWlnI2eLU",
+  },
+  {
+    title: "VR Meditation Client Demo",
+    description: "A professional VR meditation project developed for a client, demonstrating immersive relaxation experiences.",
+    tags: ["Client Work", "VR", "Meditation"],
+    videoUrl: "https://www.youtube.com/embed/s1Tto1bQ0gE",
+  },
+  {
+    title: "Meta Quest Hand Interactions",
+    description: "Unity Meta Quest Oculus 2 hand interactions showcasing natural hand tracking and gesture controls.",
+    tags: ["Meta Quest", "Hand Tracking", "Oculus 2"],
+    videoUrl: "https://www.youtube.com/embed/yuKlAclu2uo",
   },
 ];
 
 const VRProjects = () => {
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-24 relative overflow-hidden scroll-mt-24">
       {/* Gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-secondary/5 to-transparent" />
       
@@ -33,9 +52,43 @@ const VRProjects = () => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {vrProjects.map((project, index) => (
-            <ProjectCard key={index} {...project} />
+            <div 
+              key={index} 
+              className="glass-card overflow-hidden hover-glow group"
+            >
+              {/* Video Embed */}
+              <div className="aspect-video w-full">
+                <iframe
+                  src={project.videoUrl}
+                  title={project.title}
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+              
+              {/* Content */}
+              <div className="p-5">
+                <div className="flex flex-wrap gap-2 mb-3">
+                  {project.tags.map((tag) => (
+                    <span 
+                      key={tag} 
+                      className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary border border-primary/20"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <h3 className="text-lg font-bold font-display mb-2 group-hover:text-primary transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-sm text-muted-foreground font-body">
+                  {project.description}
+                </p>
+              </div>
+            </div>
           ))}
         </div>
 

@@ -1,26 +1,28 @@
-import ProjectCard from "./ProjectCard";
-
 const featuredProjects = [
   {
     title: "AI Agents English Learning Game",
     description: "An innovative educational game leveraging AI agents to create personalized English learning experiences with adaptive difficulty and conversational practice.",
     tags: ["Unity", "AI Integration", "EdTech", "Mobile"],
+    videoUrl: "https://drive.google.com/file/d/1GAEzFRGQ-yegm6k0EILEk0zyrt7mZdpc/preview",
     featured: true,
   },
   {
     title: "Royal Champs",
     description: "A competitive multiplayer game featuring royal battle mechanics with strategic gameplay elements.",
     tags: ["Unity", "Multiplayer", "Mobile"],
+    videoUrl: "https://drive.google.com/file/d/1snmlPrDNJZBrBlRuCaOMWgm_r_G4G2IN/preview",
   },
   {
     title: "Kids Game Project",
     description: "Engaging educational games designed specifically for children with colorful visuals and intuitive controls.",
     tags: ["Unity", "Educational", "Kids"],
+    videoUrl: "https://drive.google.com/file/d/137Ty4nBKqdfnLHL5Sra5ULowBcw6YSbs/preview",
   },
   {
     title: "Car Paint Project",
     description: "Technical showcase demonstrating advanced shader programming and realistic paint simulation systems.",
     tags: ["Unity", "Shaders", "Technical Art"],
+    videoUrl: "https://www.youtube.com/embed/kdRgFFxWmk4",
     featured: true,
   },
 ];
@@ -43,9 +45,43 @@ const FeaturedProjects = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 gap-8">
           {featuredProjects.map((project, index) => (
-            <ProjectCard key={index} {...project} />
+            <div 
+              key={index} 
+              className={`glass-card overflow-hidden hover-glow group ${project.featured ? 'ring-1 ring-primary/30' : ''}`}
+            >
+              {/* Video Embed */}
+              <div className="aspect-video w-full">
+                <iframe
+                  src={project.videoUrl}
+                  title={project.title}
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+              
+              {/* Content */}
+              <div className="p-6">
+                <div className="flex flex-wrap gap-2 mb-3">
+                  {project.tags.map((tag) => (
+                    <span 
+                      key={tag} 
+                      className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary border border-primary/20"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <h3 className="text-xl font-bold font-display mb-2 group-hover:text-primary transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-sm text-muted-foreground font-body">
+                  {project.description}
+                </p>
+              </div>
+            </div>
           ))}
         </div>
       </div>
