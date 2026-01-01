@@ -1,27 +1,27 @@
-import { Youtube, Play, BookOpen } from "lucide-react";
+import { Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const tutorials = [
   {
-    title: "Vector3 Techniques in Unity",
-    description: "Deep dive into Vector3 operations, transformations, and practical applications in game development.",
-    duration: "15 min",
+    title: "Vector3 Techniques for Unity",
+    description: "Top Game Developer Reveals Best Vector3 Techniques for Unity - deep dive into Vector3 operations and transformations.",
+    videoUrl: "https://www.youtube.com/embed/RQpWAN8-1bg",
   },
   {
     title: "Lerp vs Slerp Explained",
-    description: "Understanding the differences between linear and spherical interpolation with real-world examples.",
-    duration: "12 min",
+    description: "Unity Movement MISTAKES Lerp vs Slerp EXPOSED - understanding the differences between linear and spherical interpolation.",
+    videoUrl: "https://www.youtube.com/embed/KXgyGR03uSw",
   },
   {
-    title: "Raycasting Mastery",
-    description: "Comprehensive guide to raycasting for object detection, UI interaction, and physics queries.",
-    duration: "20 min",
+    title: "Raycast Types in Unity",
+    description: "Raycast vs CapsuleCast - The #1 Physics Mistake Game Developers Make. Comprehensive guide to raycasting.",
+    videoUrl: "https://www.youtube.com/embed/oNHwBn3CnNU",
   },
 ];
 
 const YouTubeSection = () => {
   return (
-    <section className="py-24 relative">
+    <section id="tutorials" className="py-24 relative scroll-mt-24">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
       
       <div className="section-container relative">
@@ -43,31 +43,33 @@ const YouTubeSection = () => {
           {tutorials.map((tutorial, index) => (
             <div 
               key={index}
-              className="glass-card p-6 hover-glow group"
+              className="glass-card overflow-hidden hover-glow group"
             >
-              <div className="aspect-video rounded-lg bg-gradient-to-br from-muted to-card mb-4 flex items-center justify-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 group-hover:opacity-70 transition-opacity" />
-                <div className="w-14 h-14 rounded-full bg-destructive/90 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 z-10">
-                  <Play className="w-6 h-6 text-foreground ml-1" />
-                </div>
+              {/* Video Embed */}
+              <div className="aspect-video w-full">
+                <iframe
+                  src={tutorial.videoUrl}
+                  title={tutorial.title}
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
               </div>
-              <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
-                <BookOpen className="w-3 h-3" />
-                <span>{tutorial.duration}</span>
+              <div className="p-5">
+                <h3 className="text-lg font-bold font-display mb-2 group-hover:text-primary transition-colors">
+                  {tutorial.title}
+                </h3>
+                <p className="text-sm text-muted-foreground font-body">
+                  {tutorial.description}
+                </p>
               </div>
-              <h3 className="text-lg font-bold font-display mb-2 group-hover:text-primary transition-colors">
-                {tutorial.title}
-              </h3>
-              <p className="text-sm text-muted-foreground font-body">
-                {tutorial.description}
-              </p>
             </div>
           ))}
         </div>
 
         <div className="text-center mt-12">
           <Button variant="outline" size="lg" asChild>
-            <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.youtube.com/@MudassarShaheen" target="_blank" rel="noopener noreferrer">
               <Youtube className="w-5 h-5 mr-2" />
               Visit YouTube Channel
             </a>

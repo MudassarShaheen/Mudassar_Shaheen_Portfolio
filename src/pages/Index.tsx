@@ -15,16 +15,20 @@ const Index = () => {
     <main className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Navbar />
       <Hero />
-      <Introduction />
+      <section id="about">
+        <Introduction />
+      </section>
       <FeaturedProjects />
-      <SteamProjects />
+      <section id="steam">
+        <SteamProjects />
+      </section>
       <section id="vr">
         <VRProjects />
       </section>
+      <HyperCasualGallery />
       <section id="automation">
         <AutomationSection />
       </section>
-      <HyperCasualGallery />
       <YouTubeSection />
       <Contact />
       <Footer />
