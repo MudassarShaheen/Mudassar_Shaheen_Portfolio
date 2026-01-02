@@ -1,4 +1,4 @@
-import { Cpu, GitBranch, Workflow, Zap } from "lucide-react";
+import { Cpu, GitBranch, Workflow, Zap, ExternalLink } from "lucide-react";
 
 const features = [
   {
@@ -20,6 +20,24 @@ const features = [
     icon: Zap,
     title: "Business Logic",
     description: "Streamlined business processes through intelligent automation solutions.",
+  },
+];
+
+const demoApps = [
+  {
+    title: "AI LinkedIn Content Automation",
+    description: "Automated content generation and scheduling for LinkedIn",
+    url: "https://ai-linkedin-content-automation-dbzn.vercel.app/",
+  },
+  {
+    title: "AI English Tutor",
+    description: "Interactive AI-powered English learning assistant",
+    url: "https://ai-english-tutor-eta.vercel.app/",
+  },
+  {
+    title: "AI Weather App",
+    description: "Intelligent weather forecasting with AI insights",
+    url: "https://ai-powered-weather-app-jet.vercel.app/",
   },
 ];
 
@@ -78,6 +96,37 @@ const AutomationSection = () => {
                   {feature.description}
                 </p>
               </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Demo Apps Section */}
+        <div className="mt-16">
+          <h3 className="text-2xl md:text-3xl font-bold font-display mb-8 text-center">
+            Live <span className="gradient-text">Demo Apps</span>
+          </h3>
+          <div className="grid md:grid-cols-3 gap-6">
+            {demoApps.map((app, index) => (
+              <a 
+                key={index}
+                href={app.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="glass-card p-6 hover-glow group cursor-pointer"
+              >
+                <div className="flex items-start justify-between mb-3">
+                  <div className="p-2 rounded-lg bg-primary/20 border border-primary/30">
+                    <Zap className="w-5 h-5 text-primary" />
+                  </div>
+                  <ExternalLink className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+                <h4 className="text-lg font-bold font-display mb-2 group-hover:text-primary transition-colors">
+                  {app.title}
+                </h4>
+                <p className="text-sm text-muted-foreground font-body">
+                  {app.description}
+                </p>
+              </a>
             ))}
           </div>
         </div>
