@@ -14,8 +14,8 @@ const hyperCasualGames = [
 ];
 
 const puzzleGames = [
-  { name: "Traffic Jam", link: "https://drive.google.com/file/d/1-8lXtzitCIQJBIWxvKT21zrIgDVU4KDP/view" },
-  { name: "Number Puzzle", link: "https://drive.google.com/file/d/1dOdoUD9ti7xdXeOk5V3dHe_ufJTx5gdb/view" },
+  { name: "Traffic Jam", video: "https://drive.google.com/file/d/1-8lXtzitCIQJBIWxvKT21zrIgDVU4KDP/preview" },
+  { name: "Number Puzzle", video: "https://drive.google.com/file/d/1dOdoUD9ti7xdXeOk5V3dHe_ufJTx5gdb/preview" },
 ];
 
 const HyperCasualGallery = () => {
@@ -36,30 +36,30 @@ const HyperCasualGallery = () => {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
             {hyperCasualGames.map((game, index) => (
               <div 
                 key={game.name}
                 className="glass-card overflow-hidden hover-glow group"
                 style={{ animationDelay: `${index * 0.05}s` }}
               >
-                {/* Video Embed - Show first video */}
-                <div className="aspect-video w-full">
+                {/* Video Container with proper aspect ratio */}
+                <div className="relative w-full" style={{ paddingBottom: '177.78%' }}>
                   <iframe
                     src={game.videos[0]}
                     title={game.name}
-                    className="w-full h-full"
+                    className="absolute inset-0 w-full h-full"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   />
                 </div>
-                <div className="p-4">
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-display font-semibold group-hover:text-primary transition-colors">
+                <div className="p-3 md:p-4">
+                  <div className="flex items-center justify-between gap-2">
+                    <h3 className="text-sm md:text-lg font-display font-semibold group-hover:text-primary transition-colors truncate">
                       {game.name}
                     </h3>
                     {game.videos.length > 1 && (
-                      <span className="text-xs text-muted-foreground">+{game.videos.length - 1} more</span>
+                      <span className="text-xs text-muted-foreground whitespace-nowrap">+{game.videos.length - 1}</span>
                     )}
                   </div>
                 </div>
@@ -84,22 +84,27 @@ const HyperCasualGallery = () => {
 
           <div className="grid md:grid-cols-2 gap-6">
             {puzzleGames.map((game) => (
-              <a 
+              <div 
                 key={game.name}
-                href={game.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="glass-card p-8 flex flex-col items-center text-center hover-glow group cursor-pointer"
+                className="glass-card overflow-hidden hover-glow group"
               >
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-secondary/20 to-primary/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <Puzzle className="w-10 h-10 text-secondary" />
+                {/* Video Container with proper aspect ratio */}
+                <div className="relative w-full" style={{ paddingBottom: '177.78%' }}>
+                  <iframe
+                    src={game.video}
+                    title={game.name}
+                    className="absolute inset-0 w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
                 </div>
-                <h3 className="text-xl font-display font-semibold group-hover:text-secondary transition-colors flex items-center gap-2">
-                  {game.name}
-                  <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </h3>
-                <p className="text-sm text-muted-foreground mt-2">Click to view demo</p>
-              </a>
+                <div className="p-4">
+                  <h3 className="text-xl font-display font-semibold group-hover:text-secondary transition-colors flex items-center gap-2">
+                    <Puzzle className="w-5 h-5 text-secondary" />
+                    {game.name}
+                  </h3>
+                </div>
+              </div>
             ))}
           </div>
         </div>
