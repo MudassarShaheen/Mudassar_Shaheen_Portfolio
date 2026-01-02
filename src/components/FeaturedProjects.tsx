@@ -3,7 +3,7 @@ const featuredProjects = [
     title: "AI Agents English Learning Game",
     description: "An innovative educational game leveraging AI agents to create personalized English learning experiences with adaptive difficulty and conversational practice.",
     tags: ["Unity", "AI Integration", "EdTech", "Mobile"],
-    videoUrl: "https://drive.google.com/file/d/1GAEzFRGQ-yegm6k0EILEk0zyrt7mZdpc/preview",
+    videoUrl: "https://drive.google.com/file/d/1lymhk_tLCU6D2kCjVtILjVdz4ceHePIj/preview",
     featured: true,
   },
   {
