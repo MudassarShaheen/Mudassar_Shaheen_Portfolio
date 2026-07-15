@@ -63,8 +63,7 @@ const PortfolioShowcase = () => {
 
       <div className="space-y-0">
         {show("client") && <FeaturedProjects />}
-        {show("hypercasual") && <HyperCasualGallery />}
-        {show("puzzle") && active !== "all" && <HyperCasualGallery />}
+        {(show("hypercasual") || active === "puzzle") && <HyperCasualGallery />}
         {show("steam") && <SteamProjects />}
         {show("vr") && <VRProjects />}
         {show("tutorials") && <YouTubeSection />}
