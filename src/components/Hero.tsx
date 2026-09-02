@@ -55,10 +55,12 @@ const Hero = () => {
           </h1>
 
           <h2
-            className="font-display text-xl md:text-3xl uppercase tracking-wide text-foreground mb-6 animate-slide-up"
+            className="font-display text-lg md:text-2xl uppercase tracking-wide text-foreground mb-6 animate-slide-up flex flex-wrap items-center gap-x-3 gap-y-1"
             style={{ animationDelay: "0.15s" }}
           >
-            Unity Game Developer
+            <span>Senior Unity Developer</span>
+            <span className="text-primary/50 text-base md:text-xl" aria-hidden="true">/</span>
+            <span>Technical Project Manager</span>
           </h2>
 
           <div
