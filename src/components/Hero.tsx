@@ -36,7 +36,7 @@ const Hero = () => {
           <div className="inline-flex items-center gap-2 px-4 py-2 mb-10 rounded-full border border-primary/40 bg-primary/10 backdrop-blur-sm animate-fade-in">
             <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
             <span className="text-xs md:text-sm text-primary font-display uppercase tracking-[0.25em]">
-              Senior Unity Developer · Technical PM
+              Senior Unity Developer (C#) · ECS/DOTS · VR · Technical PM
             </span>
           </div>
 
