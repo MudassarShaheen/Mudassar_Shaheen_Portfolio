@@ -44,7 +44,7 @@ const demoApps = [
 const AutomationSection = () => {
   return (
     <section className="py-24 relative">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(180_100%_50%_/_0.03)_0%,_transparent_70%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(14_78%_57%_/_0.03)_0%,_transparent_70%)]" />
       
       <div className="section-container relative">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
