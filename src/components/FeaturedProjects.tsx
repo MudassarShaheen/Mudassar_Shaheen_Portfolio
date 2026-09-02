@@ -3,14 +3,14 @@ const featuredProjects = [
     title: "Zanthalar - Multiplayer Card Game",
     description: "A real-time online multiplayer card game built with Unity and a custom Node.js socket-based backend server. Features strategic card battles, matchmaking, persistent player profiles, and low-latency networking for competitive play.",
     tags: ["Unity", "Multiplayer", "Socket.IO", "Custom Backend", "Card Game"],
-    videoUrl: "https://drive.google.com/file/d/1mbAqWwqWINTM6bbhxHmxDlK2wRIx0fcs/preview",
+    videoUrl: "https://www.youtube.com/embed/ybfDXeDwyZc",
     featured: true,
   },
   {
     title: "AI Agents English Learning Game",
     description: "An innovative educational game leveraging AI agents to create personalized English learning experiences with adaptive difficulty and conversational practice.",
     tags: ["Unity", "AI Integration", "EdTech", "Mobile"],
-    videoUrl: "https://drive.google.com/file/d/1lymhk_tLCU6D2kCjVtILjVdz4ceHePIj/preview",
+    videoUrl: "https://www.youtube.com/embed/FJ5CewpYzHE",
     featured: true,
   },
   {

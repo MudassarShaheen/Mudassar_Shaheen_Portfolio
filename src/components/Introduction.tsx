@@ -22,19 +22,20 @@ const Introduction = () => {
               <span className="gradient-text block">Technical Project Manager</span>
             </h2>
             <p className="text-lg text-muted-foreground font-body leading-relaxed">
-              I'm a senior <span className="text-primary">Unity developer</span> and
-              technical project manager who leads game development services end-to-end —
-              from concept and architecture to production, live-ops, and delivery. My
-              stack spans <span className="text-secondary">VR for Meta Quest</span>,
-              multiplayer systems with custom backends, and{" "}
-              <span className="text-primary">AI-driven automation</span> pipelines.
+              I'm a senior <span className="text-primary">Unity developer (C#)</span> and{" "}
+              <span className="text-secondary">technical project manager</span> with deep
+              expertise in <span className="text-primary">ECS/DOTS & performance
+              optimization</span>, <span className="text-secondary">VR for Meta Quest</span>,
+              and <span className="text-primary">multiplayer networking</span> — leading
+              game development services end-to-end, from concept and architecture to
+              production, live-ops, and delivery.
             </p>
             <p className="text-muted-foreground font-body leading-relaxed">
               I've shipped hyper-casual hits played by millions, architected Steam RPGs
-              with deep systems, and built socket-based multiplayer backends. As a
-              technical PM, I scope, estimate, and lead cross-functional teams —
-              translating client vision into shippable, maintainable products, on time
-              and on budget.
+              with deep systems, and built socket-based multiplayer backends. As a senior
+              technical lead and PM, I scope, estimate, and mentor cross-functional teams —
+              translating client vision into shippable, maintainable products, on time and
+              on budget. <span className="text-primary">Open to remote & contract work.</span>
             </p>
             <div className="flex gap-4 pt-4">
               <div className="h-1 w-20 bg-gradient-to-r from-primary to-secondary rounded-full" />

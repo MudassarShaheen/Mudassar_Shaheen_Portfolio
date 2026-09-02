@@ -4,10 +4,12 @@ import SteamProjects from "./SteamProjects";
 import VRProjects from "./VRProjects";
 import HyperCasualGallery from "./HyperCasualGallery";
 import YouTubeSection from "./YouTubeSection";
+import AISoloDevShowcase from "./AISoloDevShowcase";
 
 const categories = [
   { id: "all", label: "All" },
   { id: "client", label: "Client Projects" },
+  { id: "ai", label: "AI Solo Dev" },
   { id: "hypercasual", label: "Hypercasual" },
   { id: "puzzle", label: "Puzzle" },
   { id: "steam", label: "Steam/PC" },
@@ -63,6 +65,7 @@ const PortfolioShowcase = () => {
 
       <div className="space-y-0">
         {show("client") && <FeaturedProjects />}
+        {show("ai") && <AISoloDevShowcase />}
         {(show("hypercasual") || active === "puzzle") && <HyperCasualGallery />}
         {show("steam") && <SteamProjects />}
         {show("vr") && <VRProjects />}
