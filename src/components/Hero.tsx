@@ -1,96 +1,116 @@
-import { Button } from "@/components/ui/button";
-import { ArrowDown } from "lucide-react";
 import HeroScene from "@/components/HeroScene";
 
+const specializations = ["VR / XR", "Playable Ads", "Gameplay Systems", "AI Integration"];
+
 const Hero = () => {
-  const scrollToProjects = () => {
-    document.getElementById("portfolio")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-16">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsl(220_30%_12%)_0%,_hsl(220_20%_4%)_70%)]" />
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center overflow-hidden pt-24 pb-16"
+    >
+      {/* Cinematic ground */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsl(262_40%_10%)_0%,_hsl(var(--background))_70%)]" />
 
-      {/* Animated grid */}
-      <div className="absolute inset-0 opacity-15">
+      {/* Faint architectural grid */}
+      <div className="absolute inset-0 opacity-[0.07]">
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `linear-gradient(hsl(var(--primary) / 0.1) 1px, transparent 1px),
-                             linear-gradient(90deg, hsl(var(--primary) / 0.1) 1px, transparent 1px)`,
-            backgroundSize: "60px 60px",
+            backgroundImage: `linear-gradient(hsl(var(--primary) / 0.5) 1px, transparent 1px),
+                             linear-gradient(90deg, hsl(var(--primary) / 0.5) 1px, transparent 1px)`,
+            backgroundSize: "64px 64px",
           }}
         />
       </div>
 
-      {/* Single 3D glowing object, reacts to mouse & scroll */}
+      {/* Interactive 3D glow, follows cursor + scroll */}
       <HeroScene />
 
-      {/* Floating orbs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] animate-pulse-glow" />
-      <div
-        className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-secondary/10 rounded-full blur-[100px] animate-pulse-glow"
-        style={{ animationDelay: "1.5s" }}
-      />
-
-      {/* Availability status */}
-      <div className="absolute top-24 right-4 sm:right-8 z-20 hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-card/90 backdrop-blur-sm shadow-lg">
-        <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-        <span className="text-[11px] font-display uppercase tracking-[0.15em] text-muted-foreground">
+      <div className="absolute top-24 right-4 sm:right-8 z-20 hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-card/70 backdrop-blur-sm">
+        <span className="w-1.5 h-1.5 rounded-full bg-success animate-pulse" />
+        <span className="text-[11px] font-display uppercase tracking-[0.2em] text-muted-foreground">
           Available for select projects
         </span>
       </div>
 
       <div className="relative z-10 section-container">
-        <div className="max-w-5xl mx-auto glass-card p-10 md:p-16 text-center">
-          {/* Role badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-10 rounded-full border border-primary/40 bg-primary/10 backdrop-blur-sm animate-fade-in">
-            <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-            <span className="text-xs md:text-sm text-primary font-display uppercase tracking-[0.25em]">
-              Unity Game Developer · Technical Project Manager
-            </span>
-          </div>
+        <div className="max-w-4xl">
+          <p className="font-display text-sm md:text-base uppercase tracking-[0.4em] text-primary mb-6 animate-fade-in">
+            Hello, I'm
+          </p>
 
-          {/* Main heading */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-display mb-8 animate-slide-up leading-[1.05]">
-            <span className="gradient-text glow-text">Mudassar Shaheen</span>
+          <h1 className="font-display font-bold uppercase leading-[0.92] mb-8 animate-slide-up">
+            <span
+              className="block text-foreground"
+              style={{ fontSize: "clamp(3rem, 9vw, 7.5rem)" }}
+            >
+              Mudassar
+            </span>
+            <span
+              className="block gradient-text"
+              style={{ fontSize: "clamp(3rem, 9vw, 7.5rem)" }}
+            >
+              Shaheen
+            </span>
           </h1>
 
-          {/* Tagline with colored keywords */}
-          <p
-            className="text-lg md:text-2xl text-muted-foreground font-body max-w-3xl mx-auto mb-4 animate-slide-up leading-relaxed"
-            style={{ animationDelay: "0.2s" }}
+          <h2
+            className="font-display text-xl md:text-3xl uppercase tracking-wide text-foreground mb-6 animate-slide-up"
+            style={{ animationDelay: "0.15s" }}
           >
-            Building interactive games, immersive experiences, and real-time systems across{" "}
-            <span className="text-secondary font-semibold">Hypercasual</span>,{" "}
-            <span className="text-primary font-semibold">VR/AR</span>, and{" "}
-            <span className="text-foreground font-semibold">Steam/PC</span> platforms.
-          </p>
-          <p
-            className="text-sm text-muted-foreground/80 font-body mb-10 animate-slide-up"
+            Unity Game Developer
+          </h2>
+
+          <div
+            className="flex flex-wrap gap-x-3 gap-y-2 mb-8 animate-slide-up"
             style={{ animationDelay: "0.25s" }}
           >
-            8+ years leading teams and delivering shipped titles · Remote · Worldwide
+            {specializations.map((s, i) => (
+              <span key={s} className="flex items-center gap-3">
+                <span className="font-display text-xs md:text-sm uppercase tracking-[0.2em] text-muted-foreground">
+                  {s}
+                </span>
+                {i < specializations.length - 1 && (
+                  <span className="text-primary/50" aria-hidden="true">
+                    /
+                  </span>
+                )}
+              </span>
+            ))}
+          </div>
+
+          <p
+            className="text-base md:text-lg text-muted-foreground font-body max-w-xl mb-10 leading-relaxed animate-slide-up"
+            style={{ animationDelay: "0.35s" }}
+          >
+            I design and develop interactive experiences and games that combine gameplay,
+            technology and immersive real-time 3D.
           </p>
 
-          {/* CTA Buttons */}
           <div
-            className="flex flex-col sm:flex-row justify-center gap-4 animate-slide-up"
-            style={{ animationDelay: "0.4s" }}
+            className="flex flex-wrap items-center gap-6 animate-slide-up"
+            style={{ animationDelay: "0.45s" }}
           >
-            <Button variant="hero" size="xl" onClick={scrollToProjects}>
-              View My Work
-            </Button>
-            <Button variant="outline" size="xl" asChild>
-              <a href="#contact">Let's Work Together</a>
-            </Button>
+            <a
+              href="#projects"
+              className="magnetic-btn group inline-flex items-center gap-3 font-display text-sm uppercase tracking-[0.2em] bg-primary text-primary-foreground rounded-full px-8 py-4 hover:shadow-[0_0_40px_hsl(var(--primary)/0.45)] transition-shadow duration-300"
+            >
+              Explore My Work
+              <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
+                →
+              </span>
+            </a>
+            <a
+              href="/cv.pdf"
+              download="Mudassar Resume.pdf"
+              className="magnetic-btn group inline-flex items-center gap-3 font-display text-sm uppercase tracking-[0.2em] text-foreground hover:text-primary transition-colors duration-300"
+            >
+              Download CV
+              <span className="transition-transform duration-300 group-hover:translate-y-1" aria-hidden="true">
+                ↓
+              </span>
+            </a>
           </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="flex justify-center mt-12 animate-float">
-          <ArrowDown className="w-6 h-6 text-muted-foreground" />
         </div>
       </div>
     </section>

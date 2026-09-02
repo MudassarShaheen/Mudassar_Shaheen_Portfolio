@@ -43,7 +43,7 @@ const demoApps = [
 
 const AutomationSection = () => {
   return (
-    <section className="py-24 relative">
+    <section className="py-20 md:py-24 relative">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(180_100%_50%_/_0.03)_0%,_transparent_70%)]" />
       
       <div className="section-container relative">

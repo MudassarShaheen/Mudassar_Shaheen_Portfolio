@@ -1,11 +1,15 @@
 import { useEffect, useRef } from "react";
-import * as THREE from "three";
+import type * as THREENS from "three";
 
 /**
  * Decorative WebGL background for the hero: a single glowing orb resting
  * at the edge of the frame that drifts toward the cursor, plus a sparse
  * field of ambient dust. Plain three.js (no @react-three/fiber) — a
  * handful of refs and one render loop, easy to reason about and cheap.
+ *
+ * three.js is dynamically imported so it ships as its own chunk instead
+ * of bloating the main bundle, and the particle count scales down on
+ * narrow/mobile viewports to keep things lightweight there.
  *
  * Skips entirely for prefers-reduced-motion or when WebGL is unavailable,
  * and stops rendering while scrolled out of view.
@@ -20,6 +24,27 @@ const HeroScene = () => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduceMotion) return;
 
+    const probe = document.createElement("canvas");
+    const hasWebgl = probe.getContext("webgl2") || probe.getContext("webgl");
+    if (!hasWebgl) return;
+
+    let cancelled = false;
+    let cleanup: (() => void) | undefined;
+
+    import("three").then((THREE) => {
+      if (!cancelled) cleanup = setupScene(THREE, container);
+    });
+
+    return () => {
+      cancelled = true;
+      cleanup?.();
+    };
+  }, []);
+
+  return <div ref={containerRef} className="absolute inset-0" aria-hidden="true" />;
+};
+
+function setupScene(THREE: typeof THREENS, container: HTMLDivElement) {
     const canvas = document.createElement("canvas");
     const gl = canvas.getContext("webgl2") || canvas.getContext("webgl");
     if (!gl) return;
@@ -34,8 +59,8 @@ const HeroScene = () => {
       color.setHSL(h / 360, s / 100, l / 100);
       return `#${color.getHexString()}`;
     };
-    const primary = toHex("--primary", "#00e5ff");
-    const secondary = toHex("--secondary", "#a259ff");
+    const primary = toHex("--primary", "#3b82f6");
+    const secondary = toHex("--secondary", "#38bdf8");
 
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
@@ -103,8 +128,8 @@ const HeroScene = () => {
     ring.rotation.x = 1.4;
     orbGroup.add(ring);
 
-    // sparse ambient dust
-    const DUST_COUNT = 180;
+    // sparse ambient dust — fewer particles on narrow/mobile viewports
+    const DUST_COUNT = window.innerWidth < 768 ? 70 : 180;
     const dustPositions = new Float32Array(DUST_COUNT * 3);
     for (let i = 0; i < DUST_COUNT; i++) {
       const radius = 4 + Math.random() * 7;
@@ -163,7 +188,7 @@ const HeroScene = () => {
 
       current.lerp(new THREE.Vector2(mouse.x, mouse.y), 0.045);
 
-      const restX = vpWidth * 0.44;
+      const restX = vpWidth * 0.62;
       orbGroup.position.x = restX + current.x * (vpWidth * 0.035);
       orbGroup.position.y = current.y * 0.3;
 
@@ -195,9 +220,6 @@ const HeroScene = () => {
       renderer.dispose();
       container.removeChild(canvas);
     };
-  }, []);
-
-  return <div ref={containerRef} className="absolute inset-0" aria-hidden="true" />;
-};
+}
 
 export default HeroScene;
