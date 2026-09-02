@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
+import HeroScene from "@/components/HeroScene";
 
 const Hero = () => {
   const scrollToProjects = () => {
@@ -23,6 +24,9 @@ const Hero = () => {
         />
       </div>
 
+      {/* Single 3D glowing object, reacts to mouse & scroll */}
+      <HeroScene />
+
       {/* Floating orbs */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] animate-pulse-glow" />
       <div
@@ -30,13 +34,21 @@ const Hero = () => {
         style={{ animationDelay: "1.5s" }}
       />
 
+      {/* Availability status */}
+      <div className="absolute top-24 right-4 sm:right-8 z-20 hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-card/90 backdrop-blur-sm shadow-lg">
+        <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+        <span className="text-[11px] font-display uppercase tracking-[0.15em] text-muted-foreground">
+          Available for select projects
+        </span>
+      </div>
+
       <div className="relative z-10 section-container">
         <div className="max-w-5xl mx-auto glass-card p-10 md:p-16 text-center">
           {/* Role badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 mb-10 rounded-full border border-primary/40 bg-primary/10 backdrop-blur-sm animate-fade-in">
             <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
             <span className="text-xs md:text-sm text-primary font-display uppercase tracking-[0.25em]">
-              Senior Unity Developer (C#) · ECS/DOTS · VR · Technical PM
+              Unity Game Developer · Technical Project Manager
             </span>
           </div>
 
@@ -47,14 +59,19 @@ const Hero = () => {
 
           {/* Tagline with colored keywords */}
           <p
-            className="text-lg md:text-2xl text-muted-foreground font-body max-w-3xl mx-auto mb-10 animate-slide-up leading-relaxed"
+            className="text-lg md:text-2xl text-muted-foreground font-body max-w-3xl mx-auto mb-4 animate-slide-up leading-relaxed"
             style={{ animationDelay: "0.2s" }}
           >
-            Architecting high-performance gaming experiences across{" "}
+            Building interactive games, immersive experiences, and real-time systems across{" "}
             <span className="text-secondary font-semibold">Hypercasual</span>,{" "}
             <span className="text-primary font-semibold">VR/AR</span>, and{" "}
-            <span className="text-foreground font-semibold">Steam/PC</span> platforms —
-            backed by 8+ years leading teams and delivering shipped titles.
+            <span className="text-foreground font-semibold">Steam/PC</span> platforms.
+          </p>
+          <p
+            className="text-sm text-muted-foreground/80 font-body mb-10 animate-slide-up"
+            style={{ animationDelay: "0.25s" }}
+          >
+            8+ years leading teams and delivering shipped titles · Remote · Worldwide
           </p>
 
           {/* CTA Buttons */}
@@ -63,10 +80,10 @@ const Hero = () => {
             style={{ animationDelay: "0.4s" }}
           >
             <Button variant="hero" size="xl" onClick={scrollToProjects}>
-              Explore Projects
+              View My Work
             </Button>
             <Button variant="outline" size="xl" asChild>
-              <a href="#contact">Let's Talk</a>
+              <a href="#contact">Let's Work Together</a>
             </Button>
           </div>
         </div>
