@@ -9,7 +9,7 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-16">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsl(220_30%_12%)_0%,_hsl(220_20%_4%)_70%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsl(20_14%_12%)_0%,_hsl(0_0%_4%)_70%)]" />
 
       {/* Animated grid */}
       <div className="absolute inset-0 opacity-15">
