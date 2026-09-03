@@ -55,7 +55,7 @@ const useAssetExists = (path: string) => {
  * fine — the button is always the reliable fallback.
  */
 const AudioControls = () => {
-  const [soundOn, setSoundOn] = useState(false);
+  const [soundOn, setSoundOn] = useState(true);
   const [musicPlaying, setMusicPlaying] = useState(false);
   const [introPlaying, setIntroPlaying] = useState(false);
   const musicRef = useRef<HTMLAudioElement | null>(null);

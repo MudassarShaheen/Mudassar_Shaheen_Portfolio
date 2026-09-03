@@ -1,14 +1,17 @@
 /**
  * Tiny procedural UI sound-effect layer built on the Web Audio API —
- * no external audio files, so there's nothing to license. Sounds only
- * ever fire from a real user gesture (click/hover), which satisfies
- * browser autoplay policies automatically.
+ * no external audio files, so there's nothing to license.
  *
- * Muted by default — a visitor has to opt in via the audio toggle.
+ * On by default — the mute button turns it off, not on. Note this is
+ * distinct from browser autoplay policy: the underlying AudioContext
+ * still won't produce audible sound until the very first real click
+ * anywhere on the page (a hover alone doesn't count as a user gesture),
+ * so the first hover before any click stays silent even with this on —
+ * that's a hard browser restriction, not a bug here.
  */
 
 let ctx: AudioContext | null = null;
-let enabled = false;
+let enabled = true;
 
 const STORAGE_KEY = "ms-portfolio-sound-enabled";
 
@@ -26,9 +29,11 @@ export const isSoundEnabled = () => enabled;
 
 export const initSound = () => {
   try {
-    enabled = localStorage.getItem(STORAGE_KEY) === "true";
+    // Default ON: only an explicit "false" (the visitor muted it before)
+    // turns it off. No stored value at all means first visit → on.
+    enabled = localStorage.getItem(STORAGE_KEY) !== "false";
   } catch {
-    enabled = false;
+    enabled = true;
   }
   return enabled;
 };

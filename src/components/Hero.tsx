@@ -100,7 +100,7 @@ const Hero = () => {
             </a>
             <a
               href="/cv.pdf"
-              download="Mudassar Resume.pdf"
+              download="Mudassar's Resume.pdf"
               className="magnetic-btn group inline-flex items-center gap-3 font-display text-sm uppercase tracking-[0.2em] text-foreground hover:text-primary transition-colors duration-300"
             >
               Download CV
