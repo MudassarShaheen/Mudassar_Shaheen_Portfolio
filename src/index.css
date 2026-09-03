@@ -121,11 +121,36 @@
 
   .hover-glow {
     @apply transition-all duration-300;
+    transform: translateZ(0) scale(1);
   }
 
   .hover-glow:hover {
-    box-shadow: var(--glow-primary);
+    box-shadow: 0 20px 60px -12px hsl(var(--primary) / 0.45), var(--glow-primary);
     border-color: hsl(var(--primary) / 0.5);
+    transform: translateY(-6px) scale(1.035);
+  }
+
+  /* "popup" style for video/embed cards — lifts, glows and brightens on
+     hover, like the card is coming forward off the page. */
+  .video-card-hover {
+    @apply transition-all duration-500 ease-out;
+    transform: translateZ(0) scale(1);
+  }
+
+  .video-card-hover:hover {
+    box-shadow: 0 30px 80px -16px hsl(var(--primary) / 0.55), 0 0 0 1px hsl(var(--primary) / 0.4);
+    transform: translateY(-10px) scale(1.06);
+    z-index: 10;
+  }
+
+  .video-card-hover img,
+  .video-card-hover iframe {
+    @apply transition-all duration-500 ease-out;
+  }
+
+  .video-card-hover:hover img,
+  .video-card-hover:hover iframe {
+    filter: brightness(1.08) saturate(1.1);
   }
 
   .section-container {

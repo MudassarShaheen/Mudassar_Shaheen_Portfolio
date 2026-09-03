@@ -181,7 +181,7 @@ const FeaturedProjects = () => {
                 href={openUrl(project.videoUrl)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group snap-start shrink-0 w-[260px] sm:w-[280px] glass-card overflow-hidden hover-glow"
+                className="group snap-start shrink-0 w-[260px] sm:w-[280px] glass-card overflow-hidden video-card-hover"
               >
                 <div className="aspect-video w-full bg-muted overflow-hidden">
                   <iframe

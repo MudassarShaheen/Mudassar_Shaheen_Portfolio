@@ -3,6 +3,7 @@ import CustomCursor from "@/components/CustomCursor";
 import ScrollIndicator from "@/components/ScrollIndicator";
 import LoadingScreen from "@/components/LoadingScreen";
 import PortalScene from "@/components/PortalScene";
+import MouseLiquid from "@/components/MouseLiquid";
 import AudioControls from "@/components/AudioControls";
 import { useUiSounds } from "@/hooks/use-ui-sounds";
 import Hero from "@/components/Hero";
@@ -22,6 +23,7 @@ const Index = () => {
     <main className="min-h-screen text-foreground overflow-x-hidden">
       <LoadingScreen />
       <PortalScene />
+      <MouseLiquid />
       <div className="grain-overlay" />
       <CustomCursor />
       <ScrollIndicator />

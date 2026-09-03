@@ -33,13 +33,31 @@ const CustomCursor = () => {
       const interactive = target.closest("a, button, [role='button'], input, textarea");
       const draggable = target.closest("[data-cursor='drag']");
       if (draggable) {
-        gsap.to(ring, { scale: 2.4, opacity: 0.9, duration: 0.25, ease: "power2.out" });
+        gsap.to(ring, {
+          scale: 2.6,
+          opacity: 0.95,
+          boxShadow: "0 0 40px 6px hsl(var(--accent) / 0.55)",
+          duration: 0.3,
+          ease: "power2.out",
+        });
         ring.dataset.state = "drag";
       } else if (interactive) {
-        gsap.to(ring, { scale: 1.8, opacity: 0.7, duration: 0.25, ease: "power2.out" });
+        gsap.to(ring, {
+          scale: 2,
+          opacity: 0.85,
+          boxShadow: "0 0 30px 4px hsl(var(--primary) / 0.5)",
+          duration: 0.3,
+          ease: "power2.out",
+        });
         ring.dataset.state = "link";
       } else {
-        gsap.to(ring, { scale: 1, opacity: 0.5, duration: 0.25, ease: "power2.out" });
+        gsap.to(ring, {
+          scale: 1,
+          opacity: 0.5,
+          boxShadow: "0 0 0px 0px hsl(var(--primary) / 0)",
+          duration: 0.3,
+          ease: "power2.out",
+        });
         ring.dataset.state = "";
       }
     };

@@ -26,7 +26,7 @@ const YouTubeSection = () => {
           {tutorials.map((tutorial, index) => (
             <div 
               key={index}
-              className="glass-card overflow-hidden hover-glow group"
+              className="glass-card overflow-hidden video-card-hover group"
             >
               {/* Video Embed */}
               <div className="aspect-video w-full">

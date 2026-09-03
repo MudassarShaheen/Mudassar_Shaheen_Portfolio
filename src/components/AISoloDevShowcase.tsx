@@ -44,7 +44,7 @@ const AISoloDevShowcase = () => {
         {/* Portrait (9:16) mobile-style grid */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
           {aiSoloBuilds.map((build, index) => (
-            <div key={index} className="glass-card overflow-hidden hover-glow group">
+            <div key={index} className="glass-card overflow-hidden video-card-hover group">
               <div className="aspect-[9/16] w-full">
                 <iframe
                   src={build.videoUrl}

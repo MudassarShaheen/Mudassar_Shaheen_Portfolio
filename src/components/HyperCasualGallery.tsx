@@ -23,7 +23,7 @@ const HyperCasualGallery = () => {
             {hyperCasualGames.map((game, index) => (
               <div
                 key={game.name}
-                className="glass-card overflow-hidden hover-glow group"
+                className="glass-card overflow-hidden video-card-hover group"
                 style={{ animationDelay: `${index * 0.05}s` }}
               >
                 {/* Video Container with proper aspect ratio */}
@@ -66,11 +66,11 @@ const HyperCasualGallery = () => {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
             {puzzleGames.map((game) => (
               <div
                 key={game.name}
-                className="glass-card overflow-hidden hover-glow group"
+                className="glass-card overflow-hidden video-card-hover group"
               >
                 {/* Video Container with proper aspect ratio */}
                 <div className="relative w-full" style={{ paddingBottom: '177.78%' }}>
@@ -83,9 +83,9 @@ const HyperCasualGallery = () => {
                     allowFullScreen
                   />
                 </div>
-                <div className="p-4">
-                  <h3 className="text-xl font-display font-semibold group-hover:text-primary transition-colors flex items-center gap-2">
-                    <Puzzle className="w-5 h-5 text-primary" />
+                <div className="p-3 md:p-4">
+                  <h3 className="text-sm md:text-lg font-display font-semibold group-hover:text-primary transition-colors flex items-center gap-2 truncate">
+                    <Puzzle className="w-4 h-4 md:w-5 md:h-5 text-primary shrink-0" />
                     {game.name}
                   </h3>
                 </div>

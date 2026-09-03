@@ -7,6 +7,8 @@ import {
   playHoverSound,
   playClickSound,
   playToggleSound,
+  startAmbientDrone,
+  stopAmbientDrone,
 } from "@/lib/sound";
 
 /**
@@ -37,11 +39,20 @@ const useAssetExists = (path: string) => {
 /**
  * Floating audio control cluster, bottom-right:
  * - UI sound-effect toggle (procedural, always available)
- * - Voice intro play button (only shown once /intro.mp3 exists)
- * - Ambient background music toggle (only shown once /ambient.mp3 exists)
+ * - Voice intro: manual play/pause only (only shown once /intro.mp3
+ *   exists) — a voiced intro should never play without the visitor
+ *   choosing to hear it.
+ * - Ambient background music: loops once started — plays a real
+ *   /ambient.mp3 if one has been added to public/, otherwise falls back
+ *   to a procedural Web Audio drone (no file, nothing to license).
  *
- * Everything defaults OFF — audio only ever starts from a direct click,
- * which is both good UX and satisfies browser autoplay restrictions.
+ * The music button is the single source of truth for play/pause. There
+ * is deliberately no separate "start on first click anywhere" listener —
+ * that raced against this button's own click (both trying to toggle the
+ * same state in the same gesture) and made it look broken. A silent,
+ * best-effort autoplay attempt still runs once on mount for the file
+ * case; browsers will usually block it before any gesture, and that's
+ * fine — the button is always the reliable fallback.
  */
 const AudioControls = () => {
   const [soundOn, setSoundOn] = useState(false);
@@ -51,23 +62,35 @@ const AudioControls = () => {
   const introRef = useRef<HTMLAudioElement | null>(null);
 
   const hasIntro = useAssetExists("/intro.mp3");
-  const hasMusic = useAssetExists("/ambient.mp3");
+  const hasMusicFile = useAssetExists("/ambient.mp3");
 
   useEffect(() => {
     setSoundOn(initSound());
   }, []);
 
   useEffect(() => {
-    if (!hasMusic) return;
+    if (!hasMusicFile) return;
     const el = new Audio("/ambient.mp3");
     el.loop = true;
     el.volume = 0.18;
     musicRef.current = el;
+
+    // Best-effort only — most browsers block this before any user gesture,
+    // and that's expected. The Play button always works regardless.
+    el.play()
+      .then(() => setMusicPlaying(true))
+      .catch(() => {});
+
     return () => {
       el.pause();
       musicRef.current = null;
     };
-  }, [hasMusic]);
+  }, [hasMusicFile]);
+
+  // Stop the procedural drone if this control cluster is ever unmounted
+  // while it's playing (it lives for the page's whole lifetime in
+  // practice, but this keeps things correct regardless).
+  useEffect(() => () => stopAmbientDrone(), []);
 
   useEffect(() => {
     if (!hasIntro) return;
@@ -91,12 +114,14 @@ const AudioControls = () => {
 
   const toggleMusic = () => {
     const el = musicRef.current;
-    if (!el) return;
     if (musicPlaying) {
-      el.pause();
+      el ? el.pause() : stopAmbientDrone();
       setMusicPlaying(false);
-    } else {
+    } else if (el) {
       el.play().catch(() => {});
+      setMusicPlaying(true);
+    } else {
+      startAmbientDrone();
       setMusicPlaying(true);
     }
     if (isSoundEnabled()) playClickSound();
@@ -132,16 +157,14 @@ const AudioControls = () => {
         </button>
       )}
 
-      {hasMusic && (
-        <button
-          type="button"
-          onClick={toggleMusic}
-          aria-label={musicPlaying ? "Pause background music" : "Play background music"}
-          className="p-2.5 rounded-full border border-border/60 bg-card/80 backdrop-blur-xl text-muted-foreground hover:text-primary hover:border-primary/50 transition-colors"
-        >
-          {musicPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-        </button>
-      )}
+      <button
+        type="button"
+        onClick={toggleMusic}
+        aria-label={musicPlaying ? "Pause background music" : "Play background music"}
+        className="p-2.5 rounded-full border border-border/60 bg-card/80 backdrop-blur-xl text-muted-foreground hover:text-primary hover:border-primary/50 transition-colors"
+      >
+        {musicPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+      </button>
 
       <button
         type="button"
