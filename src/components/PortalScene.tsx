@@ -262,14 +262,6 @@ function setupPortal(THREE: typeof THREENS, container: HTMLDivElement) {
     const breathe = 1 + Math.sin(t * 0.5) * 0.02;
     portalGroup.scale.setScalar(heroScale * breathe);
 
-    // Tilt the ring off-axis so it reads as a disc in 3D perspective
-    // rather than a flat circle stamped on the screen, and let the tilt
-    // itself shift slowly with scroll for a real "looking into it from a
-    // moving viewpoint" sensation.
-    const tilt = 0.55 + Math.sin(pageFrac * Math.PI * 1.3) * 0.25 + current.y * 0.08;
-    portalGroup.rotation.x = tilt;
-    portalGroup.rotation.y = current.x * 0.15 + pageFrac * 0.6;
-
     // A subtle camera dolly: drifting forward/back through the ambient
     // dust field over the full scroll makes near particles slide past
     // faster than far ones — genuine parallax depth, not a flat backdrop.
@@ -277,7 +269,10 @@ function setupPortal(THREE: typeof THREENS, container: HTMLDivElement) {
     camera.position.x = current.x * 0.15;
     camera.lookAt(0, 0, 0);
 
-    const ambientOpacity = 1 - heroFrac * 0.72; // never fully vanishes
+    // Bold and bright through the hero, but drops off hard once scrolled
+    // past it — outside the hero this is pure background ambience and
+    // must never compete with body text contrast (e.g. project copy).
+    const ambientOpacity = 1 - heroFrac * 0.92; // floor ~0.08, barely-there
     ring.material.opacity = 1 * ambientOpacity;
     ringInner.material.opacity = 0.7 * ambientOpacity;
     ringOuterAccent.material.opacity = 0.5 * ambientOpacity;
