@@ -104,13 +104,16 @@ export const projects: Project[] = [
 export interface AISoloBuild {
   title: string;
   videoUrl: string;
+  /** Most of these are portrait (9:16) mobile-style captures; a few are landscape (16:9). */
+  aspect?: "portrait" | "video";
 }
 
 /** Solo R&D prototypes built end-to-end with Claude Code + Unity MCP. */
 export const aiSoloBuilds: AISoloBuild[] = [
-  { title: "Gameplay Prototype #1", videoUrl: "https://www.youtube.com/embed/NizVCQeQjzo" },
-  { title: "Gameplay Prototype #2", videoUrl: "https://www.youtube.com/embed/lcW3cdFKDdc" },
-  { title: "Gameplay Prototype #3", videoUrl: "https://www.youtube.com/embed/9DzZKBVYcPU" },
+  { title: "Gameplay Prototype #1", videoUrl: "https://www.youtube.com/embed/NizVCQeQjzo", aspect: "portrait" },
+  { title: "Gameplay Prototype #2", videoUrl: "https://www.youtube.com/embed/lcW3cdFKDdc", aspect: "portrait" },
+  { title: "Gameplay Prototype #3", videoUrl: "https://www.youtube.com/embed/9DzZKBVYcPU", aspect: "portrait" },
+  { title: "Gameplay Prototype #4", videoUrl: "https://www.youtube.com/embed/bYCL3HOaq3A", aspect: "video" },
 ];
 
 export interface MobileGame {

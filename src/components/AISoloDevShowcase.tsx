@@ -8,6 +8,9 @@ const highlights = [
 ];
 
 const AISoloDevShowcase = () => {
+  const portraitBuilds = aiSoloBuilds.filter((b) => b.aspect !== "video");
+  const landscapeBuilds = aiSoloBuilds.filter((b) => b.aspect === "video");
+
   return (
     <section id="ai-solo-dev" className="py-20 md:py-24 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
@@ -43,7 +46,7 @@ const AISoloDevShowcase = () => {
 
         {/* Portrait (9:16) mobile-style grid */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          {aiSoloBuilds.map((build, index) => (
+          {portraitBuilds.map((build, index) => (
             <div key={index} className="glass-card overflow-hidden video-card-hover group">
               <div className="aspect-[9/16] w-full">
                 <iframe
@@ -66,6 +69,35 @@ const AISoloDevShowcase = () => {
             </div>
           ))}
         </div>
+
+        {/* Landscape (16:9) builds get their own row — squeezing them into
+            the portrait grid would distort or letterbox them oddly */}
+        {landscapeBuilds.length > 0 && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto mt-6">
+            {landscapeBuilds.map((build, index) => (
+              <div key={index} className="glass-card overflow-hidden video-card-hover group">
+                <div className="aspect-video w-full">
+                  <iframe
+                    src={build.videoUrl}
+                    title={build.title}
+                    loading="lazy"
+                    className="w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+                <div className="p-4">
+                  <h3 className="text-base font-bold font-display group-hover:text-primary transition-colors">
+                    {build.title}
+                  </h3>
+                  <p className="text-xs text-muted-foreground font-body mt-1">
+                    Practice prototype · Built solo with Claude Code + Unity MCP
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
