@@ -1,6 +1,8 @@
 import Navbar from "@/components/Navbar";
 import CustomCursor from "@/components/CustomCursor";
 import ScrollIndicator from "@/components/ScrollIndicator";
+import LoadingScreen from "@/components/LoadingScreen";
+import PortalScene from "@/components/PortalScene";
 import Hero from "@/components/Hero";
 import Introduction from "@/components/Introduction";
 import Skills from "@/components/Skills";
@@ -13,7 +15,9 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <main className="min-h-screen bg-background text-foreground overflow-x-hidden">
+    <main className="min-h-screen text-foreground overflow-x-hidden">
+      <LoadingScreen />
+      <PortalScene />
       <div className="grain-overlay" />
       <CustomCursor />
       <ScrollIndicator />

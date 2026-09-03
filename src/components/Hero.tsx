@@ -1,5 +1,3 @@
-import HeroScene from "@/components/HeroScene";
-
 const specializations = ["VR / XR", "Playable Ads", "Gameplay Systems", "AI Integration"];
 
 const Hero = () => {
@@ -8,8 +6,9 @@ const Hero = () => {
       id="home"
       className="relative min-h-screen flex items-center overflow-hidden pt-24 pb-16"
     >
-      {/* Cinematic ground */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsl(262_40%_10%)_0%,_hsl(var(--background))_70%)]" />
+      {/* Cinematic ground — the glowing portal itself lives in the shared,
+          page-wide PortalScene canvas rendered behind everything */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsl(var(--primary)/0.12)_0%,_hsl(var(--background))_70%)]" />
 
       {/* Faint architectural grid */}
       <div className="absolute inset-0 opacity-[0.07]">
@@ -22,9 +21,6 @@ const Hero = () => {
           }}
         />
       </div>
-
-      {/* Interactive 3D glow, follows cursor + scroll */}
-      <HeroScene />
 
       <div className="absolute top-24 right-4 sm:right-8 z-20 hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-card/70 backdrop-blur-sm">
         <span className="w-1.5 h-1.5 rounded-full bg-success animate-pulse" />
