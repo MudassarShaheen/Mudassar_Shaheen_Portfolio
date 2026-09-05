@@ -34,11 +34,15 @@ const Experience = () => {
           {
             opacity: 1,
             x: 0,
-            duration: 0.7,
+            duration: 0.6,
             ease: "power2.out",
             scrollTrigger: {
               trigger: item,
-              start: "top 80%",
+              // Fires as soon as the item starts entering the viewport —
+              // "top 80%" left a long stretch of scroll where the item had
+              // already scrolled near-into view but hadn't revealed yet,
+              // reading as an empty/faded gap between milestones.
+              start: "top 95%",
               toggleActions: "play none none reverse",
             },
           }
@@ -62,7 +66,7 @@ const Experience = () => {
             <div ref={lineRef} className="absolute inset-0 w-px bg-gradient-to-b from-primary to-secondary" />
           </div>
 
-          <div className="space-y-14">
+          <div className="space-y-10">
             {milestones.map((m) => (
               <div key={m.index} className="milestone-item relative">
                 <span className="absolute -left-10 md:-left-14 top-1 w-4 h-4 -translate-x-1/2 rounded-full bg-background border-2 border-primary shadow-[0_0_16px_hsl(var(--primary)/0.6)]" />
