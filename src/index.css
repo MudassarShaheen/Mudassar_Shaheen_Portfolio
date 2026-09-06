@@ -186,7 +186,7 @@
   /* very large editorial heading used for section titles */
   .display-heading {
     @apply font-display font-bold leading-[0.95] tracking-tight;
-    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    font-size: clamp(2rem, 6vw, 5.5rem);
   }
 
   /* subtle grain overlay for a filmic, non-flat surface */
