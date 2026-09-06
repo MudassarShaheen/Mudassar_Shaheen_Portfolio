@@ -56,7 +56,7 @@ const FeaturedProjects = () => {
       <div className="section-container">
         <div className="mb-12 md:mb-16 max-w-2xl">
           <span className="section-label">03 — Browse Projects</span>
-          <h2 className="display-heading mt-4">Things I've Shipped</h2>
+          <h2 className="display-heading mt-4">Built. Shipped. Played.</h2>
           <p className="text-muted-foreground font-body mt-4 text-lg">
             A collection of games and interactive experiences built across mobile, VR, and PC.
           </p>

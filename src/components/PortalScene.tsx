@@ -100,17 +100,17 @@ function setupPortal(THREE: typeof THREENS, container: HTMLDivElement) {
     return new THREE.CanvasTexture(c);
   })();
 
-  // The portal: a dominant bright ring, layered bloom-style glow discs
-  // (stacked additive sprites fake a bloom post-process without the
-  // extra render-pass cost), and a faint core.
+  // The portal: a soft ring with layered haze discs behind it. Blending is
+  // normal rather than additive — on the light paper ground additive light
+  // is invisible, so these tint the page instead of glowing over it.
   const portalGroup = new THREE.Group();
   scene.add(portalGroup);
   const PORTAL_R = 2.05;
 
   const bloomLayers = [
-    { scale: 12, opacity: 0.16 },
-    { scale: 8, opacity: 0.22 },
-    { scale: 5.5, opacity: 0.3 },
+    { scale: 12, opacity: 0.05 },
+    { scale: 8, opacity: 0.07 },
+    { scale: 5.5, opacity: 0.09 },
   ].map(({ scale, opacity }) => {
     const sprite = new THREE.Sprite(
       new THREE.SpriteMaterial({
@@ -119,7 +119,7 @@ function setupPortal(THREE: typeof THREENS, container: HTMLDivElement) {
         transparent: true,
         opacity,
         depthWrite: false,
-        blending: THREE.AdditiveBlending,
+        blending: THREE.NormalBlending,
       })
     );
     sprite.scale.set(scale, scale, 1);
@@ -128,28 +128,28 @@ function setupPortal(THREE: typeof THREENS, container: HTMLDivElement) {
   });
 
   const ring = new THREE.Mesh(
-    new THREE.TorusGeometry(PORTAL_R, 0.09, 32, 160),
-    new THREE.MeshBasicMaterial({ color: primary, transparent: true, opacity: 1 })
+    new THREE.TorusGeometry(PORTAL_R, 0.045, 32, 160),
+    new THREE.MeshBasicMaterial({ color: primary, transparent: true, opacity: 0.28 })
   );
   portalGroup.add(ring);
 
   const ringInner = new THREE.Mesh(
     new THREE.TorusGeometry(PORTAL_R, 0.022, 16, 160),
-    new THREE.MeshBasicMaterial({ color: "#ffffff", transparent: true, opacity: 0.7, depthWrite: false })
+    new THREE.MeshBasicMaterial({ color: primary, transparent: true, opacity: 0.35, depthWrite: false })
   );
   ringInner.scale.setScalar(1.1);
   portalGroup.add(ringInner);
 
   const ringOuterAccent = new THREE.Mesh(
     new THREE.TorusGeometry(PORTAL_R, 0.012, 16, 160),
-    new THREE.MeshBasicMaterial({ color: primary, transparent: true, opacity: 0.5, depthWrite: false })
+    new THREE.MeshBasicMaterial({ color: primary, transparent: true, opacity: 0.25, depthWrite: false })
   );
   ringOuterAccent.scale.setScalar(1.35);
   portalGroup.add(ringOuterAccent);
 
   const core = new THREE.Mesh(
     new THREE.CircleGeometry(PORTAL_R * 0.96, 64),
-    new THREE.MeshBasicMaterial({ color: primary, transparent: true, opacity: 0.16, depthWrite: false })
+    new THREE.MeshBasicMaterial({ color: primary, transparent: true, opacity: 0.05, depthWrite: false })
   );
   portalGroup.add(core);
 
@@ -172,9 +172,9 @@ function setupPortal(THREE: typeof THREENS, container: HTMLDivElement) {
     size: 0.045,
     sizeAttenuation: true,
     transparent: true,
-    opacity: 0.65,
+    opacity: 0.3,
     depthWrite: false,
-    blending: THREE.AdditiveBlending,
+    blending: THREE.NormalBlending,
   });
   const stream = new THREE.Points(streamGeo, streamMat);
   portalGroup.add(stream);
@@ -197,7 +197,7 @@ function setupPortal(THREE: typeof THREENS, container: HTMLDivElement) {
     size: 0.02,
     sizeAttenuation: true,
     transparent: true,
-    opacity: 0.22,
+    opacity: 0.14,
     depthWrite: false,
   });
   const dust = new THREE.Points(dustGeo, dustMat);
@@ -273,20 +273,20 @@ function setupPortal(THREE: typeof THREENS, container: HTMLDivElement) {
     // past it — outside the hero this is pure background ambience and
     // must never compete with body text contrast (e.g. project copy).
     const ambientOpacity = 1 - heroFrac * 0.92; // floor ~0.08, barely-there
-    ring.material.opacity = 1 * ambientOpacity;
-    ringInner.material.opacity = 0.7 * ambientOpacity;
-    ringOuterAccent.material.opacity = 0.5 * ambientOpacity;
-    core.material.opacity = 0.16 * ambientOpacity;
-    streamMat.opacity = 0.65 * ambientOpacity;
+    ring.material.opacity = 0.28 * ambientOpacity;
+    ringInner.material.opacity = 0.2 * ambientOpacity;
+    ringOuterAccent.material.opacity = 0.25 * ambientOpacity;
+    core.material.opacity = 0.05 * ambientOpacity;
+    streamMat.opacity = 0.3 * ambientOpacity;
     bloomLayers.forEach((layer, i) => {
-      const base = [0.16, 0.22, 0.3][i];
+      const base = [0.05, 0.07, 0.09][i];
       layer.material.opacity = base * ambientOpacity;
     });
 
     // Hue drifts from primary to secondary across the full page
     tmpColor.copy(primary).lerp(secondary, pageFrac);
     ring.material.color.copy(tmpColor);
-    ringInner.material.color.set("#ffffff");
+    ringInner.material.color.copy(tmpColor);
     ringOuterAccent.material.color.copy(tmpColor);
     core.material.color.copy(tmpColor);
     streamMat.color.copy(tmpColor);

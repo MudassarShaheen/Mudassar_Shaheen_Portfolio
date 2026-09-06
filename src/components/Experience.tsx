@@ -2,9 +2,9 @@ import { useEffect, useRef } from "react";
 import { milestones } from "@/data/experience";
 import { gsap, ScrollTrigger, prefersReducedMotion } from "@/lib/animations";
 
-// Newest role first, oldest last — a level-progression readout rather than
-// a plain chronological list.
-const levels = [...milestones].reverse();
+// Oldest role first, current role last — the timeline reads bottom-up like
+// a level progression, ending on where the journey is right now.
+const levels = milestones;
 
 const Experience = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -70,9 +70,16 @@ const Experience = () => {
           </div>
 
           <div className="space-y-10">
+            <div className="milestone-item relative pb-2">
+              <span className="absolute -left-10 md:-left-14 top-1 w-3 h-3 -translate-x-1/2 rotate-45 border-2 border-foreground bg-background" />
+              <span className="font-display text-xs uppercase tracking-[0.3em] text-muted-foreground">
+                Quest began here
+              </span>
+            </div>
+
             {levels.map((m, i) => {
-              const isCurrent = i === 0;
-              const levelNum = levels.length - i;
+              const isCurrent = i === levels.length - 1;
+              const levelNum = i + 1;
               return (
                 <div key={m.index} className="milestone-item relative">
                   <span
@@ -103,13 +110,6 @@ const Experience = () => {
                 </div>
               );
             })}
-
-            <div className="milestone-item relative pt-2">
-              <span className="absolute -left-10 md:-left-14 top-1 w-3 h-3 -translate-x-1/2 rotate-45 border-2 border-foreground bg-background" />
-              <span className="font-display text-xs uppercase tracking-[0.3em] text-muted-foreground">
-                Quest began here
-              </span>
-            </div>
           </div>
         </div>
       </div>
