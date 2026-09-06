@@ -71,6 +71,12 @@ export const playHoverSound = () => playTone(880, 0.08, 0.03, "sine");
 export const playClickSound = () => playTone(520, 0.12, 0.05, "triangle");
 export const playToggleSound = () => playTone(660, 0.1, 0.04, "sine");
 
+/** Two-note "snap" — plays as each hero attribute card lands in place. */
+export const playCardLandSound = () => {
+  playTone(740, 0.07, 0.035, "triangle");
+  setTimeout(() => playTone(1040, 0.09, 0.03, "sine"), 45);
+};
+
 /**
  * Procedural ambient background drone — a few detuned, slowly-modulated
  * oscillators through a lowpass filter. No external audio file, so there

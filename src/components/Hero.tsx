@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import type { CSSProperties } from "react";
+import { isSoundEnabled, playCardLandSound } from "@/lib/sound";
 
 const attributes = [
   { label: "ATTR 01", title: "Unity Development", tags: "C# · Gameplay Systems · Architecture" },
@@ -15,6 +17,29 @@ const stats = [
 ];
 
 const Hero = () => {
+  // Matching SFX for each attribute card's zoom-to-place landing (see the
+  // .card-settle-in / .card-settle-in::after keyframes in index.css for
+  // the VFX side). Skipped under prefers-reduced-motion, since those
+  // animations resolve instantly rather than on their real timeline.
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Card animations: delay = 0.5 + i*0.12, duration = 0.8s
+    // Sound should play when card lands (animation completes) = delay + duration
+    const timers = attributes.map((_, i) =>
+      window.setTimeout(() => {
+        if (isSoundEnabled()) playCardLandSound();
+      }, (0.5 + i * 0.12 + 0.8) * 1000)
+    );
+    return () => timers.forEach(window.clearTimeout);
+  }, []);
+
+  const handleCardClick = () => {
+    const skillsSection = document.getElementById("skills");
+    if (skillsSection) {
+      skillsSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section id="home" className="relative overflow-hidden pt-28 pb-20 md:pt-36 md:pb-28 lg:min-h-[42rem]">
       <div className="absolute inset-0 paper-grid" aria-hidden="true" />
@@ -36,9 +61,11 @@ const Hero = () => {
               { top: "29.5rem", right: "2rem" },
             ];
             return (
-              <div
+              <button
                 key={a.label}
-                className="paper-card absolute w-64 p-4 card-settle-in hover:shadow-[6px_6px_0_0_hsl(var(--primary)/0.9)] transition-shadow duration-300"
+                type="button"
+                onClick={handleCardClick}
+                className="paper-card absolute w-64 p-4 card-settle-in hover:shadow-[6px_6px_0_0_hsl(var(--primary)/0.9)] transition-shadow duration-300 cursor-pointer text-left"
                 style={
                   {
                     ...offsets[i],
@@ -54,7 +81,7 @@ const Hero = () => {
                 <p className="text-xs text-muted-foreground font-body uppercase tracking-wide mt-1">
                   {a.tags}
                 </p>
-              </div>
+              </button>
             );
           })}
         </div>
@@ -140,12 +167,17 @@ const Hero = () => {
         {/* Mobile: attribute cards stacked below hero copy */}
         <div className="lg:hidden grid grid-cols-2 sm:grid-cols-3 gap-3 mt-14">
           {attributes.map((a) => (
-            <div key={a.label} className="paper-card p-3">
+            <button
+              key={a.label}
+              type="button"
+              onClick={handleCardClick}
+              className="paper-card p-3 cursor-pointer text-left hover:shadow-[4px_4px_0_0_hsl(var(--primary)/0.7)] transition-shadow duration-300"
+            >
               <span className="font-display text-[9px] font-bold uppercase tracking-[0.2em] text-primary">
                 {a.label}
               </span>
               <h3 className="font-display text-sm font-bold uppercase mt-1">{a.title}</h3>
-            </div>
+            </button>
           ))}
         </div>
       </div>

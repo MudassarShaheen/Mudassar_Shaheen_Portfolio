@@ -237,18 +237,51 @@
     }
   }
 
-  /* Staggered settle-in for the hero attribute cards — each card supplies
-     its own resting rotation via --rot, so one keyframe serves all five. */
+  /* Staggered zoom-in-to-place for the hero attribute cards — each starts
+     scaled up and dead-center-ish, then zooms/settles into its own resting
+     rotation (via --rot) and position, one by one. A quick glow-ring pulse
+     (the VFX) lands right as each card arrives; the matching SFX is
+     triggered from JS at the same staggered delay (see Hero.tsx). */
   .card-settle-in {
     opacity: 0;
-    transform: translateY(-28px) rotate(calc(var(--rot, 0deg) - 8deg));
-    animation: card-settle-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    transform: translate(var(--from-x, 0), var(--from-y, -40px)) scale(1.9) rotate(calc(var(--rot, 0deg) - 10deg));
+    animation: card-settle-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .card-settle-in::after {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: inherit;
+    border: 2px solid hsl(var(--primary) / 0.9);
+    opacity: 0;
+    pointer-events: none;
+    animation: card-land-glow 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: inherit;
   }
 
   @keyframes card-settle-in {
+    60% {
+      opacity: 1;
+    }
     to {
       opacity: 1;
-      transform: translateY(0) rotate(var(--rot, 0deg));
+      transform: translate(0, 0) scale(1) rotate(var(--rot, 0deg));
+    }
+  }
+
+  @keyframes card-land-glow {
+    0%, 68% {
+      opacity: 0;
+      transform: scale(1);
+    }
+    78% {
+      opacity: 1;
+      transform: scale(1.06);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.14);
     }
   }
 
