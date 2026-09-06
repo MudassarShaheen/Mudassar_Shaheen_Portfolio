@@ -22,8 +22,8 @@ const Index = () => {
       <section id="about">
         <Introduction />
       </section>
-      <Skills />
       <PortfolioShowcase />
+      <Skills />
       <Experience />
       <TechWall />
       <section id="automation">

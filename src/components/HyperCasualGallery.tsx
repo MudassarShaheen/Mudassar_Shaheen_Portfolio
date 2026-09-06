@@ -1,7 +1,17 @@
-import { Gamepad2, Puzzle } from "lucide-react";
+import { useState } from "react";
+import { Gamepad2, Puzzle, Play } from "lucide-react";
 import { hyperCasualGames, puzzleGames } from "@/data/projects";
+import { getVideoThumbnail } from "@/lib/thumbnail";
+import VideoModal from "@/components/VideoModal";
+
+/** Hides a broken/unavailable thumbnail image, leaving the icon fallback behind it visible. */
+const hideOnError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+  e.currentTarget.style.display = "none";
+};
 
 const HyperCasualGallery = () => {
+  const [playing, setPlaying] = useState<{ url: string; title: string } | null>(null);
+
   return (
     <section className="py-20 md:py-28 relative">
       <div className="section-container">
@@ -20,34 +30,43 @@ const HyperCasualGallery = () => {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-            {hyperCasualGames.map((game, index) => (
-              <div
+            {hyperCasualGames.map((game) => (
+              <button
                 key={game.name}
-                className="glass-card overflow-hidden hover-glow group"
-                style={{ animationDelay: `${index * 0.05}s` }}
+                type="button"
+                onClick={() => setPlaying({ url: game.videos[0], title: game.name })}
+                className="paper-card group text-left overflow-hidden flex flex-col hover:-translate-y-1 transition-transform duration-300"
               >
-                {/* Video Container with proper aspect ratio */}
-                <div className="relative w-full" style={{ paddingBottom: '177.78%' }}>
-                  <iframe
-                    src={game.videos[0]}
-                    title={game.name}
-                    loading="lazy"
-                    className="absolute inset-0 w-full h-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
+                <div className="relative w-full" style={{ paddingBottom: "177.78%" }}>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-muted">
+                    <Gamepad2 className="w-8 h-8 text-primary" />
+                  </div>
+                  {getVideoThumbnail(game.videos[0]) && (
+                    <img
+                      src={getVideoThumbnail(game.videos[0])!}
+                      alt=""
+                      loading="lazy"
+                      onError={hideOnError}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  )}
+                  <div className="absolute inset-0 flex items-center justify-center bg-foreground/0 group-hover:bg-foreground/10 transition-colors">
+                    <span className="flex items-center justify-center w-11 h-11 rounded-full border-2 border-foreground bg-background group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                      <Play className="w-4 h-4 ml-0.5" fill="currentColor" />
+                    </span>
+                  </div>
                 </div>
-                <div className="p-3 md:p-4">
+                <div className="p-3 md:p-4 border-t-2 border-foreground/70">
                   <div className="flex items-center justify-between gap-2">
-                    <h3 className="text-sm md:text-lg font-display font-semibold group-hover:text-primary transition-colors truncate">
-                      {game.name}
-                    </h3>
+                    <h3 className="text-sm md:text-lg font-display font-semibold truncate">{game.name}</h3>
                     {game.videos.length > 1 && (
-                      <span className="text-xs text-muted-foreground whitespace-nowrap">+{game.videos.length - 1}</span>
+                      <span className="text-xs text-muted-foreground whitespace-nowrap">
+                        +{game.videos.length - 1}
+                      </span>
                     )}
                   </div>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         </div>
@@ -66,34 +85,50 @@ const HyperCasualGallery = () => {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
             {puzzleGames.map((game) => (
-              <div
+              <button
                 key={game.name}
-                className="glass-card overflow-hidden hover-glow group"
+                type="button"
+                onClick={() => setPlaying({ url: game.videos[0], title: game.name })}
+                className="paper-card group text-left overflow-hidden flex flex-col hover:-translate-y-1 transition-transform duration-300"
               >
-                {/* Video Container with proper aspect ratio */}
-                <div className="relative w-full" style={{ paddingBottom: '177.78%' }}>
-                  <iframe
-                    src={game.videos[0]}
-                    title={game.name}
-                    loading="lazy"
-                    className="absolute inset-0 w-full h-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
+                <div className="relative w-full" style={{ paddingBottom: "177.78%" }}>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-muted">
+                    <Puzzle className="w-8 h-8 text-primary" />
+                  </div>
+                  {getVideoThumbnail(game.videos[0]) && (
+                    <img
+                      src={getVideoThumbnail(game.videos[0])!}
+                      alt=""
+                      loading="lazy"
+                      onError={hideOnError}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  )}
+                  <div className="absolute inset-0 flex items-center justify-center bg-foreground/0 group-hover:bg-foreground/10 transition-colors">
+                    <span className="flex items-center justify-center w-11 h-11 rounded-full border-2 border-foreground bg-background group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                      <Play className="w-4 h-4 ml-0.5" fill="currentColor" />
+                    </span>
+                  </div>
                 </div>
-                <div className="p-4">
-                  <h3 className="text-xl font-display font-semibold group-hover:text-primary transition-colors flex items-center gap-2">
-                    <Puzzle className="w-5 h-5 text-primary" />
+                <div className="p-3 md:p-4 border-t-2 border-foreground/70">
+                  <h3 className="text-sm md:text-lg font-display font-semibold flex items-center gap-2 truncate">
                     {game.name}
                   </h3>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         </div>
       </div>
+
+      <VideoModal
+        videoUrl={playing?.url ?? null}
+        title={playing?.title ?? ""}
+        onClose={() => setPlaying(null)}
+        aspect="portrait"
+      />
     </section>
   );
 };

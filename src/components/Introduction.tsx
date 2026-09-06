@@ -3,11 +3,13 @@ import { Code2, Layers, Zap, Trophy } from "lucide-react";
 import { revealOnScroll } from "@/lib/animations";
 
 const stats = [
-  { label: "Years Experience", value: "6+", icon: Trophy },
+  { label: "Years Experience", value: "7+", icon: Trophy },
   { label: "Shipped Titles", value: "50+", icon: Layers },
   { label: "Engines & Tools", value: "15+", icon: Code2 },
   { label: "Clients Served", value: "30+", icon: Zap },
 ];
+
+const levelFromYears = "07";
 
 const Introduction = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -71,30 +73,58 @@ const Introduction = () => {
             className="relative aspect-square max-w-md mx-auto lg:mx-0 [perspective:1000px]"
           >
             <div
-              className="absolute inset-6 rounded-2xl border border-border/60 bg-card/40 backdrop-blur-sm transition-transform duration-300 ease-out"
-              style={{ transform: "translate3d(var(--px, 0), var(--py, 0), 0)" }}
+              className="paper-card absolute inset-6 transition-transform duration-300 ease-out -rotate-1"
+              style={{ transform: "translate3d(var(--px, 0), var(--py, 0), 0) rotate(-1deg)" }}
             >
               <div className="p-6 h-full flex flex-col">
-                <div className="flex items-center gap-1.5 mb-4">
-                  <span className="w-2.5 h-2.5 rounded-full bg-destructive/70" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-accent/70" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-success/70" />
+                <div className="flex items-center justify-between mb-5">
+                  <span className="font-display text-[10px] font-bold uppercase tracking-[0.25em] px-2 py-1 rounded bg-foreground text-background">
+                    Player Profile
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
+                    <span className="text-[10px] font-display uppercase tracking-wider text-muted-foreground">
+                      Available
+                    </span>
+                  </span>
                 </div>
-                <div className="space-y-2 font-mono text-[11px] text-muted-foreground/80 flex-1 overflow-hidden">
-                  <p><span className="text-secondary">class</span> <span className="text-primary">GameplaySystem</span> : MonoBehaviour {"{"}</p>
-                  <p className="pl-4"><span className="text-secondary">void</span> Update() {"{"}</p>
-                  <p className="pl-8">HandleInput();</p>
-                  <p className="pl-8">UpdatePhysics(Time.deltaTime);</p>
-                  <p className="pl-8">SyncState();</p>
-                  <p className="pl-4">{"}"}</p>
-                  <p>{"}"}</p>
+
+                <div className="space-y-3 flex-1">
+                  <div>
+                    <span className="text-[10px] font-display uppercase tracking-[0.2em] text-muted-foreground">Name</span>
+                    <p className="font-display text-xl font-bold">Mudassar Shaheen</p>
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-display uppercase tracking-[0.2em] text-muted-foreground">Class</span>
+                    <p className="font-display text-base font-semibold text-primary">Senior Unity Developer</p>
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-display uppercase tracking-[0.2em] text-muted-foreground">Role</span>
+                    <p className="font-display text-base font-semibold">Technical Project Manager</p>
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-display uppercase tracking-[0.2em] text-muted-foreground">Specialization</span>
+                    <div className="flex flex-wrap gap-1.5 mt-1.5">
+                      {["Gameplay Systems", "VR / XR", "Multiplayer", "AI Integration"].map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-[10px] font-display uppercase tracking-wider px-2 py-1 rounded border-2 border-foreground/70"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <div className="h-px w-full bg-border/60 my-4" />
+
+                <div className="h-px w-full bg-border my-4" />
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-display uppercase tracking-[0.2em] text-muted-foreground">
-                    Unity · C# · Runtime
+                    Lahore, Pakistan
                   </span>
-                  <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                  <span className="text-[10px] font-display uppercase tracking-[0.2em] text-primary font-bold">
+                    LVL {levelFromYears}
+                  </span>
                 </div>
               </div>
             </div>

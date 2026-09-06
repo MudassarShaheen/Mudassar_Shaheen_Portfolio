@@ -1,12 +1,21 @@
-import { Youtube } from "lucide-react";
+import { useState } from "react";
+import { Youtube, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { tutorials } from "@/data/projects";
+import { getVideoThumbnail } from "@/lib/thumbnail";
+import VideoModal from "@/components/VideoModal";
+
+const hideOnError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+  e.currentTarget.style.display = "none";
+};
 
 const YouTubeSection = () => {
+  const [playing, setPlaying] = useState<{ url: string; title: string } | null>(null);
+
   return (
     <section id="tutorials" className="py-20 md:py-24 relative scroll-mt-24">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
-      
+
       <div className="section-container relative">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-primary/30 bg-primary/10 mb-6">
@@ -17,37 +26,38 @@ const YouTubeSection = () => {
             Community & <span className="gradient-text">Education</span>
           </h2>
           <p className="text-muted-foreground mt-4 max-w-2xl mx-auto font-body">
-            Sharing knowledge through tutorials and educational content, 
+            Sharing knowledge through tutorials and educational content,
             helping developers level up their Unity and game development skills.
           </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
           {tutorials.map((tutorial, index) => (
-            <div 
+            <button
               key={index}
-              className="glass-card overflow-hidden hover-glow group"
+              type="button"
+              onClick={() => setPlaying({ url: tutorial.videoUrl, title: tutorial.title })}
+              className="paper-card group text-left overflow-hidden"
             >
-              {/* Video Embed */}
-              <div className="aspect-video w-full">
-                <iframe
-                  src={tutorial.videoUrl}
-                  title={tutorial.title}
-                  loading="lazy"
-                  className="w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
+              <div className="relative aspect-video w-full bg-muted flex items-center justify-center">
+                {getVideoThumbnail(tutorial.videoUrl) && (
+                  <img
+                    src={getVideoThumbnail(tutorial.videoUrl)!}
+                    alt=""
+                    loading="lazy"
+                    onError={hideOnError}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                )}
+                <span className="relative flex items-center justify-center w-14 h-14 rounded-full border-2 border-foreground bg-background group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                  <Play className="w-5 h-5 ml-0.5" fill="currentColor" />
+                </span>
               </div>
-              <div className="p-5">
-                <h3 className="text-lg font-bold font-display mb-2 group-hover:text-primary transition-colors">
-                  {tutorial.title}
-                </h3>
-                <p className="text-sm text-muted-foreground font-body">
-                  {tutorial.description}
-                </p>
+              <div className="p-5 border-t-2 border-foreground/70">
+                <h3 className="text-lg font-bold font-display mb-2">{tutorial.title}</h3>
+                <p className="text-sm text-muted-foreground font-body">{tutorial.description}</p>
               </div>
-            </div>
+            </button>
           ))}
         </div>
 
@@ -60,6 +70,12 @@ const YouTubeSection = () => {
           </Button>
         </div>
       </div>
+
+      <VideoModal
+        videoUrl={playing?.url ?? null}
+        title={playing?.title ?? ""}
+        onClose={() => setPlaying(null)}
+      />
     </section>
   );
 };
