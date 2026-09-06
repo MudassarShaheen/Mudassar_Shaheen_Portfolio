@@ -41,11 +41,6 @@ const FeaturedProjects = () => {
     return () => ctx.revert();
   }, []);
 
-  useEffect(() => {
-    if (prefersReducedMotion()) return;
-    gsap.fromTo(".project-detail", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" });
-  }, [active]);
-
   const go = (dir: 1 | -1) => {
     setPlaying(false);
     setActive((i) => (i + dir + projects.length) % projects.length);
@@ -63,7 +58,10 @@ const FeaturedProjects = () => {
         </div>
 
         <div className="project-selector">
-          <div className="project-detail grid lg:grid-cols-2 gap-8 lg:gap-14 items-start">
+          <div
+            key={active}
+            className="project-detail-fade grid lg:grid-cols-2 gap-8 lg:gap-14 items-start"
+          >
             <button
               type="button"
               onClick={() => setPlaying(true)}

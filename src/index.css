@@ -285,6 +285,32 @@
     }
   }
 
+  /* Fade-in for the active project detail pane when it switches (Next/
+     Prev/filmstrip). Pure CSS instead of a JS-driven tween — a fresh
+     `key` per project remounts this element, so the browser's own
+     compositor plays it; it can never get stuck mid-tween the way a
+     GSAP tween can if the tab is backgrounded or the ticker stalls. */
+  .project-detail-fade {
+    animation: project-detail-fade 0.4s ease-out both;
+  }
+
+  @keyframes project-detail-fade {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-detail-fade {
+      animation: none;
+    }
+  }
+
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
