@@ -104,8 +104,8 @@ export const projects: Project[] = [
 export interface AISoloBuild {
   title: string;
   videoUrl: string;
-  /** Most of these are portrait (9:16) mobile-style captures; a few are landscape (16:9). */
-  aspect?: "portrait" | "video";
+  /** Portrait (9:16) phone-shot clips vs standard 16:9 landscape captures. */
+  aspect?: "video" | "portrait";
 }
 
 /** Solo R&D prototypes built end-to-end with Claude Code + Unity MCP. */

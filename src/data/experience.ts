@@ -32,7 +32,7 @@ export const milestones: Milestone[] = [
     role: "Senior Unity Developer",
     company: "ArgonTeq",
     location: "Lahore, Pakistan",
-    period: "Feb 2024 — 2024",
+    period: "Feb 2024 — 2025",
     description:
       "Delivered Unity development for a services-based studio, working directly with client requirements on long-running builds — including Wenet (an AI-powered English-learning game with real-time voice-to-voice NPC conversations), a Solana blockchain integration, and a VR painting application.",
   },
@@ -43,6 +43,6 @@ export const milestones: Milestone[] = [
     location: "Lahore, Pakistan",
     period: "2025 — Present",
     description:
-      "Promoted to lead technical delivery across client engagements — scoping architecture, coordinating development teams, and owning projects end-to-end from planning through production and delivery.",
+      "Stepped into technical project management — scoping and planning client engagements, coordinating development across the team, and owning delivery from architecture through launch.",
   },
 ];

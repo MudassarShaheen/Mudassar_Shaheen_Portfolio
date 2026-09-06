@@ -10,10 +10,13 @@ const Contact = () => {
       
       <div className="section-container relative">
         <div className="max-w-3xl mx-auto text-center">
-          <span className="section-label mx-auto">07 — Get in Touch</span>
-          <h2 className="display-heading mt-6 mb-6">
-            Let's Build Something
-            <span className="gradient-text block mt-2">Interactive.</span>
+          <span className="section-label mx-auto">07 — Communications</span>
+          <div className="inline-block font-display text-xs font-bold uppercase tracking-[0.3em] px-3 py-1 rounded bg-foreground text-background mt-6 mb-4">
+            Mission Complete
+          </div>
+          <h2 className="display-heading mb-6">
+            Let's Build
+            <span className="gradient-text block mt-2">Together.</span>
           </h2>
           <p className="text-xl text-muted-foreground font-body mb-3">
             Have a project in mind, need a game development partner, or want to build an
@@ -35,7 +38,7 @@ const Contact = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <a
               href="mailto:mudasar.cr@gmail.com"
-              className="glass-card p-6 hover-glow group flex flex-col items-center text-center"
+              className="paper-card p-6 hover:-translate-y-1 transition-transform duration-300 group flex flex-col items-center text-center"
             >
               <Mail className="w-8 h-8 text-primary mb-3 group-hover:scale-110 transition-transform" />
               <span className="font-display font-semibold mb-1">Email</span>
@@ -44,7 +47,7 @@ const Contact = () => {
 
             <a
               href="tel:+923324754717"
-              className="glass-card p-6 hover-glow group flex flex-col items-center text-center"
+              className="paper-card p-6 hover:-translate-y-1 transition-transform duration-300 group flex flex-col items-center text-center"
             >
               <Phone className="w-8 h-8 text-primary mb-3 group-hover:scale-110 transition-transform" />
               <span className="font-display font-semibold mb-1">Phone</span>
@@ -55,18 +58,18 @@ const Contact = () => {
               href="https://www.linkedin.com/in/mudassar-shaheen-49145451/"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass-card p-6 hover-glow group flex flex-col items-center text-center"
+              className="paper-card p-6 hover:-translate-y-1 transition-transform duration-300 group flex flex-col items-center text-center"
             >
               <Linkedin className="w-8 h-8 text-primary mb-3 group-hover:scale-110 transition-transform" />
               <span className="font-display font-semibold mb-1">LinkedIn</span>
               <span className="text-sm text-muted-foreground font-body">Connect with me</span>
             </a>
-            
-            <a 
+
+            <a
               href="https://github.com/MudassarShaheen"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass-card p-6 hover-glow group flex flex-col items-center text-center"
+              className="paper-card p-6 hover:-translate-y-1 transition-transform duration-300 group flex flex-col items-center text-center"
             >
               <Github className="w-8 h-8 text-primary mb-3 group-hover:scale-110 transition-transform" />
               <span className="font-display font-semibold mb-1">GitHub</span>

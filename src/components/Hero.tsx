@@ -1,107 +1,133 @@
-const specializations = ["VR / XR", "Playable Ads", "Gameplay Systems", "AI Integration"];
+import type { CSSProperties } from "react";
+
+const attributes = [
+  { label: "ATTR 01", title: "Unity Development", tags: "C# · Gameplay Systems · Architecture" },
+  { label: "ATTR 02", title: "VR / XR", tags: "Meta Quest · Hand Tracking · Spatial UI" },
+  { label: "ATTR 03", title: "Full-Cycle Dev", tags: "Client Delivery · Live Builds · Optimization" },
+  { label: "ATTR 04", title: "Multiplayer", tags: "Socket.IO · Networking · Matchmaking" },
+  { label: "ATTR 05", title: "AI Integration", tags: "AI-Assisted Dev · Voice AI · Automation" },
+];
+
+const stats = [
+  { value: "7+", label: "Years" },
+  { value: "20+", label: "Titles Shipped" },
+  { value: "30+", label: "Clients Served" },
+];
 
 const Hero = () => {
   return (
-    <section
-      id="home"
-      className="relative min-h-screen flex items-center overflow-hidden pt-24 pb-16"
-    >
-      {/* Cinematic ground — the glowing portal itself lives in the shared,
-          page-wide PortalScene canvas rendered behind everything */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsl(var(--primary)/0.12)_0%,_hsl(var(--background))_70%)]" />
-
-      {/* Faint architectural grid */}
-      <div className="absolute inset-0 opacity-[0.07]">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `linear-gradient(hsl(var(--primary) / 0.5) 1px, transparent 1px),
-                             linear-gradient(90deg, hsl(var(--primary) / 0.5) 1px, transparent 1px)`,
-            backgroundSize: "64px 64px",
-          }}
-        />
-      </div>
-
-      <div className="absolute top-24 right-4 sm:right-8 z-20 hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-card/70 backdrop-blur-sm">
-        <span className="w-1.5 h-1.5 rounded-full bg-success animate-pulse" />
-        <span className="text-[11px] font-display uppercase tracking-[0.2em] text-muted-foreground">
-          Available for select projects
-        </span>
-      </div>
+    <section id="home" className="relative overflow-hidden pt-28 pb-20 md:pt-36 md:pb-28 lg:min-h-[42rem]">
+      <div className="absolute inset-0 paper-grid" aria-hidden="true" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_hsl(var(--primary)/0.08)_0%,_transparent_60%)]" />
 
       <div className="relative z-10 section-container">
-        <div className="max-w-4xl">
-          <p className="font-display text-sm md:text-base uppercase tracking-[0.4em] text-primary mb-6 animate-fade-in">
-            Hello, I'm
+        {/* Attribute cards — scattered, tilted, stat-sheet style. Each card
+            gets enough vertical room (7.5rem step) so rotated corners never
+            cover the next card's text, plus a staggered fade/settle-in on
+            load (via CSS vars so one keyframe serves every rotation). */}
+        <div className="hidden lg:block absolute top-0 right-0 w-[28rem] h-[34rem]" aria-hidden="false">
+          {attributes.map((a, i) => {
+            const rotations = [-2, 2, -1.5, 2.5, -2];
+            const offsets = [
+              { top: "0rem", right: "1rem" },
+              { top: "7.5rem", right: "12.5rem" },
+              { top: "15rem", right: "0.5rem" },
+              { top: "22.5rem", right: "13rem" },
+              { top: "29.5rem", right: "2rem" },
+            ];
+            return (
+              <div
+                key={a.label}
+                className="paper-card absolute w-64 p-4 card-settle-in hover:shadow-[6px_6px_0_0_hsl(var(--primary)/0.9)] transition-shadow duration-300"
+                style={
+                  {
+                    ...offsets[i],
+                    "--rot": `${rotations[i]}deg`,
+                    animationDelay: `${0.5 + i * 0.12}s`,
+                  } as CSSProperties
+                }
+              >
+                <span className="font-display text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
+                  {a.label}
+                </span>
+                <h3 className="font-display text-lg font-bold uppercase mt-1">{a.title}</h3>
+                <p className="text-xs text-muted-foreground font-body uppercase tracking-wide mt-1">
+                  {a.tags}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="max-w-3xl">
+          <p className="font-display text-xs md:text-sm uppercase tracking-[0.35em] text-primary mb-6 animate-fade-in">
+            Turning gameplay ideas into shipped, playable builds
           </p>
 
-          <h1 className="font-display font-bold uppercase leading-[0.92] mb-8 animate-slide-up">
-            <span
-              className="block text-foreground"
-              style={{ fontSize: "clamp(3rem, 9vw, 7.5rem)" }}
-            >
+          <h1 className="font-display font-bold uppercase leading-[0.9] mb-6 animate-slide-up">
+            <span className="block text-foreground" style={{ fontSize: "clamp(3rem, 9vw, 6.5rem)" }}>
               Mudassar
             </span>
-            <span
-              className="block gradient-text"
-              style={{ fontSize: "clamp(3rem, 9vw, 7.5rem)" }}
-            >
+            <span className="block gradient-text" style={{ fontSize: "clamp(3rem, 9vw, 6.5rem)" }}>
               Shaheen
             </span>
           </h1>
 
           <h2
-            className="font-display text-lg md:text-2xl uppercase tracking-wide text-foreground mb-6 animate-slide-up flex flex-wrap items-center gap-x-3 gap-y-1"
-            style={{ animationDelay: "0.15s" }}
+            className="font-display text-lg md:text-2xl text-foreground/80 mb-6 animate-slide-up"
+            style={{ animationDelay: "0.1s" }}
           >
-            <span>Senior Unity Developer</span>
-            <span className="text-primary/50 text-base md:text-xl" aria-hidden="true">/</span>
-            <span>Technical Project Manager</span>
+            Senior Unity Developer &amp; Technical Project Manager
           </h2>
-
-          <div
-            className="flex flex-wrap gap-x-3 gap-y-2 mb-8 animate-slide-up"
-            style={{ animationDelay: "0.25s" }}
-          >
-            {specializations.map((s, i) => (
-              <span key={s} className="flex items-center gap-3">
-                <span className="font-display text-xs md:text-sm uppercase tracking-[0.2em] text-muted-foreground">
-                  {s}
-                </span>
-                {i < specializations.length - 1 && (
-                  <span className="text-primary/50" aria-hidden="true">
-                    /
-                  </span>
-                )}
-              </span>
-            ))}
-          </div>
 
           <p
             className="text-base md:text-lg text-muted-foreground font-body max-w-xl mb-10 leading-relaxed animate-slide-up"
-            style={{ animationDelay: "0.35s" }}
+            style={{ animationDelay: "0.2s" }}
           >
-            I design and develop interactive experiences and games that combine gameplay,
-            technology and immersive real-time 3D.
+            Building games, interactive experiences, playable ads and immersive digital
+            products — from gameplay systems to full client delivery.
           </p>
 
+          {/* Stat readout */}
           <div
-            className="flex flex-wrap items-center gap-6 animate-slide-up"
-            style={{ animationDelay: "0.45s" }}
+            className="flex flex-wrap gap-8 mb-10 animate-slide-up"
+            style={{ animationDelay: "0.3s" }}
+          >
+            {stats.map((s) => (
+              <div key={s.label}>
+                <div className="font-display text-3xl md:text-4xl font-bold text-foreground">
+                  {s.value}
+                </div>
+                <div className="text-xs uppercase tracking-wider text-muted-foreground font-display">
+                  {s.label}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div
+            className="flex flex-wrap items-center gap-4 animate-slide-up"
+            style={{ animationDelay: "0.4s" }}
           >
             <a
               href="#projects"
-              className="magnetic-btn group inline-flex items-center gap-3 font-display text-sm uppercase tracking-[0.2em] bg-primary text-primary-foreground rounded-full px-8 py-4 hover:shadow-[0_0_40px_hsl(var(--primary)/0.45)] transition-shadow duration-300"
+              className="magnetic-btn group inline-flex items-center gap-3 font-display text-sm uppercase tracking-[0.15em] bg-primary text-primary-foreground rounded-md px-7 py-3.5 border-2 border-foreground shadow-[3px_3px_0_0_hsl(var(--foreground))] hover:shadow-[1px_1px_0_0_hsl(var(--foreground))] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-150"
             >
-              Explore My Work
+              Work
               <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
                 →
               </span>
             </a>
             <a
+              href="#contact"
+              className="magnetic-btn group inline-flex items-center gap-3 font-display text-sm uppercase tracking-[0.15em] text-foreground border-2 border-foreground rounded-md px-7 py-3.5 hover:bg-foreground hover:text-background transition-colors duration-200"
+            >
+              Let's Talk
+            </a>
+            <a
               href="/cv.pdf"
               download="Mudassar's Resume.pdf"
-              className="magnetic-btn group inline-flex items-center gap-3 font-display text-sm uppercase tracking-[0.2em] text-foreground hover:text-primary transition-colors duration-300"
+              className="magnetic-btn group inline-flex items-center gap-2 font-display text-sm uppercase tracking-[0.15em] text-muted-foreground hover:text-primary transition-colors duration-200"
             >
               Download CV
               <span className="transition-transform duration-300 group-hover:translate-y-1" aria-hidden="true">
@@ -109,6 +135,18 @@ const Hero = () => {
               </span>
             </a>
           </div>
+        </div>
+
+        {/* Mobile: attribute cards stacked below hero copy */}
+        <div className="lg:hidden grid grid-cols-2 sm:grid-cols-3 gap-3 mt-14">
+          {attributes.map((a) => (
+            <div key={a.label} className="paper-card p-3">
+              <span className="font-display text-[9px] font-bold uppercase tracking-[0.2em] text-primary">
+                {a.label}
+              </span>
+              <h3 className="font-display text-sm font-bold uppercase mt-1">{a.title}</h3>
+            </div>
+          ))}
         </div>
       </div>
     </section>
