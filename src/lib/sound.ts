@@ -35,6 +35,18 @@ export const initSound = () => {
   } catch {
     enabled = true;
   }
+
+  // Resume AudioContext on first user gesture (click anywhere)
+  // This unlocks Web Audio API sound playback due to browser autoplay policy
+  const resumeContext = () => {
+    const audio = getContext();
+    if (audio?.state === "suspended") {
+      audio.resume();
+    }
+    document.removeEventListener("click", resumeContext);
+  };
+  document.addEventListener("click", resumeContext);
+
   return enabled;
 };
 

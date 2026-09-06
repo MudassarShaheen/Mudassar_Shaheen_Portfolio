@@ -8,7 +8,6 @@ import PortalScene from "@/components/PortalScene";
 import MouseLiquid from "@/components/MouseLiquid";
 import AudioControls from "@/components/AudioControls";
 import { useUiSounds } from "@/hooks/use-ui-sounds";
-import { useHoverSounds } from "@/hooks/use-hover-sounds";
 import Hero from "@/components/Hero";
 import Introduction from "@/components/Introduction";
 import Skills from "@/components/Skills";
@@ -21,7 +20,6 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   useUiSounds();
-  useHoverSounds();
 
   // Lazy-loaded iframes (YouTube embeds) and web fonts settling in shift
   // page layout after ScrollTrigger has already measured everything,
