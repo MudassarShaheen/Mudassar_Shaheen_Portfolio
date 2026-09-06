@@ -3,11 +3,11 @@ import type { CSSProperties } from "react";
 import { isSoundEnabled, playCardLandSound } from "@/lib/sound";
 
 const attributes = [
-  { label: "ATTR 01", title: "Unity Development", tags: "C# · Gameplay Systems · Architecture" },
-  { label: "ATTR 02", title: "VR / XR", tags: "Meta Quest · Hand Tracking · Spatial UI" },
-  { label: "ATTR 03", title: "Full-Cycle Dev", tags: "Client Delivery · Live Builds · Optimization" },
-  { label: "ATTR 04", title: "Multiplayer", tags: "Socket.IO · Networking · Matchmaking" },
-  { label: "ATTR 05", title: "AI Integration", tags: "AI-Assisted Dev · Voice AI · Automation" },
+  { label: "ATTR 01", title: "Unity Development", tags: "C# · Gameplay Systems · Architecture", target: "projects" },
+  { label: "ATTR 02", title: "VR / XR", tags: "Meta Quest · Hand Tracking · Spatial UI", target: "projects" },
+  { label: "ATTR 03", title: "Full-Cycle Dev", tags: "Client Delivery · Live Builds · Optimization", target: "ai-solo-dev" },
+  { label: "ATTR 04", title: "Multiplayer", tags: "Socket.IO · Networking · Matchmaking", target: "projects" },
+  { label: "ATTR 05", title: "AI Integration", tags: "AI-Assisted Dev · Voice AI · Automation", target: "automation" },
 ];
 
 const stats = [
@@ -33,10 +33,10 @@ const Hero = () => {
     return () => timers.forEach(window.clearTimeout);
   }, []);
 
-  const handleCardClick = () => {
-    const skillsSection = document.getElementById("skills");
-    if (skillsSection) {
-      skillsSection.scrollIntoView({ behavior: "smooth" });
+  const handleCardClick = (target: string) => {
+    const section = document.getElementById(target);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -64,7 +64,7 @@ const Hero = () => {
               <button
                 key={a.label}
                 type="button"
-                onClick={handleCardClick}
+                onClick={() => handleCardClick(a.target)}
                 className="paper-card absolute w-64 p-4 card-settle-in hover:shadow-[6px_6px_0_0_hsl(var(--primary)/0.9)] transition-shadow duration-300 cursor-pointer text-left"
                 style={
                   {
@@ -170,7 +170,7 @@ const Hero = () => {
             <button
               key={a.label}
               type="button"
-              onClick={handleCardClick}
+              onClick={() => handleCardClick(a.target)}
               className="paper-card p-3 cursor-pointer text-left hover:shadow-[4px_4px_0_0_hsl(var(--primary)/0.7)] transition-shadow duration-300"
             >
               <span className="font-display text-[9px] font-bold uppercase tracking-[0.2em] text-primary">
