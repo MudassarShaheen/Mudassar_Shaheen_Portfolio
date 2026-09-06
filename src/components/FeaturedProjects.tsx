@@ -76,7 +76,7 @@ const FeaturedProjects = () => {
                     key={project.videoUrl}
                     src={getVideoThumbnail(project.videoUrl)!}
                     alt=""
-                    loading="lazy"
+                    loading="eager"
                     onError={hideOnError}
                     className="absolute inset-0 w-full h-full object-cover"
                   />
