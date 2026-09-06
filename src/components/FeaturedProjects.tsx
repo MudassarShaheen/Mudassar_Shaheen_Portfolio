@@ -111,7 +111,7 @@ const FeaturedProjects = () => {
                 ))}
               </div>
 
-              <div className="flex items-center gap-4">
+              <div className="flex flex-wrap items-center gap-4">
                 <a
                   href={openUrl(project.videoUrl)}
                   target="_blank"
@@ -121,7 +121,7 @@ const FeaturedProjects = () => {
                   View Project
                   <ArrowUpRight className="w-4 h-4" />
                 </a>
-                <div className="flex items-center gap-2 ml-auto">
+                <div className="flex items-center gap-2 ml-auto flex-shrink-0">
                   <button
                     type="button"
                     aria-label="Previous project"
