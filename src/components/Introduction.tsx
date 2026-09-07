@@ -74,10 +74,10 @@ const Introduction = () => {
             style={{ aspectRatio: "1 / 1", maxHeight: "24rem" }}
           >
             <div
-              className="paper-card absolute inset-6 transition-transform duration-300 ease-out -rotate-1"
+              className="paper-card absolute inset-4 sm:inset-6 transition-transform duration-300 ease-out -rotate-1"
               style={{ transform: "translate3d(var(--px, 0), var(--py, 0), 0) rotate(-1deg)" }}
             >
-              <div className="p-6 h-full flex flex-col">
+              <div className="p-4 sm:p-6 h-full flex flex-col">
                 <div className="flex items-center justify-between mb-5">
                   <span className="font-display text-[10px] font-bold uppercase tracking-[0.25em] px-2 py-1 rounded bg-foreground text-background">
                     Player Profile
@@ -105,11 +105,11 @@ const Introduction = () => {
                   </div>
                   <div>
                     <span className="text-[10px] font-display uppercase tracking-[0.2em] text-muted-foreground">Specialization</span>
-                    <div className="flex flex-wrap gap-1.5 mt-1.5">
+                    <div className="flex flex-wrap gap-1 sm:gap-1.5 mt-1.5">
                       {["Gameplay Systems", "VR / XR", "Multiplayer", "AI Integration"].map((tag) => (
                         <span
                           key={tag}
-                          className="text-[10px] font-display uppercase tracking-wider px-2 py-1 rounded border-2 border-foreground/70"
+                          className="text-[9px] sm:text-[10px] font-display uppercase tracking-wider px-1.5 sm:px-2 py-0.5 sm:py-1 rounded border-2 border-foreground/70"
                         >
                           {tag}
                         </span>
