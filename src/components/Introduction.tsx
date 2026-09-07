@@ -70,7 +70,8 @@ const Introduction = () => {
           <div
             ref={visualRef}
             data-reveal
-            className="relative aspect-square max-w-md mx-auto lg:mx-0 [perspective:1000px]"
+            className="relative w-full sm:max-w-sm lg:max-w-md mx-auto lg:mx-0 [perspective:1000px]"
+            style={{ aspectRatio: "1 / 1", maxHeight: "24rem" }}
           >
             <div
               className="paper-card absolute inset-6 transition-transform duration-300 ease-out -rotate-1"
