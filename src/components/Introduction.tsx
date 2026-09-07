@@ -70,7 +70,7 @@ const Introduction = () => {
           <div
             ref={visualRef}
             data-reveal
-            className="relative w-full sm:max-w-sm lg:max-w-md mx-auto lg:mx-0 [perspective:1000px]"
+            className="relative w-full sm:max-w-sm lg:max-w-md lg:max-h-[28rem] mx-auto lg:mx-0 [perspective:1000px]"
             style={{ aspectRatio: "1 / 1", maxHeight: "24rem" }}
           >
             <div
