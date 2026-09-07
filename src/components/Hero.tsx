@@ -152,8 +152,8 @@ const Hero = () => {
               Let's Talk
             </a>
             <a
-              href="/cv.pdf"
-              download="Mudassar's Resume.pdf"
+              href="/Mudassar_Shaheen_Resume.pdf"
+              download="Mudassar_Shaheen_Resume.pdf"
               className="magnetic-btn group inline-flex items-center gap-2 font-display text-sm uppercase tracking-[0.15em] text-muted-foreground hover:text-primary transition-colors duration-200"
             >
               Download CV
