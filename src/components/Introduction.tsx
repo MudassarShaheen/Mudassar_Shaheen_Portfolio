@@ -139,12 +139,12 @@ const Introduction = () => {
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 md:mt-16 lg:mt-20" data-reveal>
           {stats.map((stat) => (
-            <div key={stat.label} className="glass-card p-6 hover-glow group">
-              <stat.icon className="w-7 h-7 text-primary mb-4 group-hover:scale-110 transition-transform duration-300" />
-              <div className="text-3xl md:text-4xl font-bold font-display gradient-text mb-1">
+            <div key={stat.label} className="glass-card p-3 sm:p-6 hover-glow group">
+              <stat.icon className="w-5 sm:w-7 h-5 sm:h-7 text-primary mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300" />
+              <div className="text-xl sm:text-3xl md:text-4xl font-bold font-display gradient-text mb-1">
                 {stat.value}
               </div>
-              <div className="text-sm text-muted-foreground font-body">{stat.label}</div>
+              <div className="text-xs sm:text-sm text-muted-foreground font-body">{stat.label}</div>
             </div>
           ))}
         </div>
