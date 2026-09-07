@@ -37,9 +37,9 @@ const Introduction = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 md:py-28 relative">
+    <section ref={sectionRef} className="py-16 md:py-20 lg:py-28 relative">
       <div className="section-container">
-        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start lg:items-center">
           <div className="space-y-6" data-reveal>
             <span className="section-label">02 — About</span>
             <h2 className="display-heading">
@@ -137,7 +137,7 @@ const Introduction = () => {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-20" data-reveal>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 md:mt-16 lg:mt-20" data-reveal>
           {stats.map((stat) => (
             <div key={stat.label} className="glass-card p-6 hover-glow group">
               <stat.icon className="w-7 h-7 text-primary mb-4 group-hover:scale-110 transition-transform duration-300" />
