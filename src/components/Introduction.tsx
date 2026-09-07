@@ -39,7 +39,7 @@ const Introduction = () => {
   return (
     <section ref={sectionRef} className="py-16 md:py-20 lg:py-28 relative">
       <div className="section-container">
-        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start lg:items-center">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start lg:items-center pb-8 md:pb-12">
           <div className="space-y-6" data-reveal>
             <span className="section-label">02 — About</span>
             <h2 className="display-heading">
