@@ -39,7 +39,7 @@ const Introduction = () => {
   return (
     <section ref={sectionRef} className="py-16 md:py-20 lg:py-28 relative">
       <div className="section-container">
-        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start lg:items-center pb-8 md:pb-12">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start lg:items-center pb-2 md:pb-12">
           <div className="space-y-6" data-reveal>
             <span className="section-label">02 — About</span>
             <h2 className="display-heading">
@@ -70,14 +70,13 @@ const Introduction = () => {
           <div
             ref={visualRef}
             data-reveal
-            className="relative w-full sm:max-w-sm lg:max-w-md lg:max-h-[36rem] mx-auto lg:mx-0 [perspective:1000px]"
-            style={{ aspectRatio: "1 / 1", maxHeight: "28rem" }}
+            className="relative w-full sm:max-w-sm lg:max-w-md sm:max-h-[28rem] sm:aspect-square mx-auto lg:mx-0 [perspective:1000px]"
           >
             <div
-              className="paper-card absolute inset-4 sm:inset-6 transition-transform duration-300 ease-out -rotate-1"
+              className="paper-card relative sm:absolute sm:inset-6 transition-transform duration-300 ease-out -rotate-1"
               style={{ transform: "translate3d(var(--px, 0), var(--py, 0), 0) rotate(-1deg)" }}
             >
-              <div className="p-4 sm:p-6 h-full flex flex-col">
+              <div className="p-4 sm:p-6 sm:h-full flex flex-col">
                 <div className="flex items-center justify-between mb-5">
                   <span className="font-display text-[10px] font-bold uppercase tracking-[0.25em] px-2 py-1 rounded bg-foreground text-background">
                     Player Profile
@@ -90,7 +89,7 @@ const Introduction = () => {
                   </span>
                 </div>
 
-                <div className="space-y-3 flex-1">
+                <div className="space-y-2.5 sm:space-y-3 flex-1">
                   <div>
                     <span className="text-[10px] font-display uppercase tracking-[0.2em] text-muted-foreground">Name</span>
                     <p className="font-display text-xl font-bold">Mudassar Shaheen</p>
@@ -118,7 +117,7 @@ const Introduction = () => {
                   </div>
                 </div>
 
-                <div className="h-px w-full bg-border my-4" />
+                <div className="h-px w-full bg-border my-3 sm:my-4" />
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-display uppercase tracking-[0.2em] text-muted-foreground">
                     Lahore, Pakistan
@@ -137,7 +136,7 @@ const Introduction = () => {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 md:mt-16 lg:mt-20" data-reveal>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 md:mt-16 lg:mt-20" data-reveal>
           {stats.map((stat) => (
             <div key={stat.label} className="glass-card p-3 sm:p-6 hover-glow group">
               <stat.icon className="w-5 sm:w-7 h-5 sm:h-7 text-primary mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300" />
