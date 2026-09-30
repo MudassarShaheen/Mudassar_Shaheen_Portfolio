@@ -21,7 +21,7 @@ export const projects: Project[] = [
     description:
       "A Unity 3D game where players hold real-time voice-to-voice conversations with AI-driven NPCs to practice English. Built the full speaking pipeline — voice capture, speech-to-text, AI pronunciation scoring, and lip-synced AI-generated replies — plus a backend-driven quiz engine spanning five task types, shipped with four-language localization.",
     tags: ["Unity", "AI Voice", "EdTech", "Localization"],
-    videoUrl: "https://www.youtube.com/embed/FJ5CewpYzHE",
+    videoUrl: "https://www.youtube.com/embed/Xy_2tZZWY8Q",
     featured: true,
   },
   {
