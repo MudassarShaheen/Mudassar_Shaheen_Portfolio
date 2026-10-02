@@ -114,6 +114,7 @@ export const aiSoloBuilds: AISoloBuild[] = [
   { title: "Gameplay Prototype #2", videoUrl: "https://www.youtube.com/embed/lcW3cdFKDdc", aspect: "portrait" },
   { title: "Gameplay Prototype #3", videoUrl: "https://www.youtube.com/embed/XGycNONv61I", aspect: "portrait" },
   { title: "Gameplay Prototype #4", videoUrl: "https://www.youtube.com/embed/bYCL3HOaq3A", aspect: "video" },
+  { title: "Gameplay Prototype #5", videoUrl: "https://www.youtube.com/embed/N74s5fvvdls", aspect: "portrait" },
 ];
 
 export interface MobileGame {
