@@ -30,7 +30,7 @@ export const projects: Project[] = [
     description:
       "A real-time online multiplayer card game built with Unity and a custom Node.js socket-based backend. Strategic card battles, matchmaking, persistent profiles, and low-latency networking for competitive play.",
     tags: ["Unity", "Multiplayer", "Socket.IO", "Custom Backend"],
-    videoUrl: "https://www.youtube.com/embed/ybfDXeDwyZc",
+    videoUrl: "https://www.youtube.com/embed/1QmlXAN3Qc4",
     featured: true,
   },
   {
