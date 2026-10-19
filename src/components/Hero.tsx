@@ -11,9 +11,9 @@ const attributes = [
 ];
 
 const stats = [
-  { value: "7+", label: "Years" },
-  { value: "20+", label: "Titles Shipped" },
-  { value: "30+", label: "Clients Served" },
+  { value: "8+", label: "Years" },
+  { value: "30+", label: "Titles Shipped" },
+  { value: "4", label: "Platforms" },
 ];
 
 const Hero = () => {

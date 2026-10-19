@@ -25,7 +25,7 @@ export const milestones: Milestone[] = [
     location: "Lahore, Pakistan",
     period: "Jan 2020 — Dec 2023",
     description:
-      "Joined a mixed-reality and promotional-games studio as an early hire and helped grow the development team to three. Developed 2D and 3D games for Android and Apple, shipping 20+ products across the App Store and Google Play.",
+      "Joined a mixed-reality and promotional-games studio as an early hire and helped build out its development team. Developed 2D and 3D games for Android and iOS, shipping 20+ products across the App Store and Google Play.",
   },
   {
     index: "03",
@@ -34,7 +34,7 @@ export const milestones: Milestone[] = [
     location: "Lahore, Pakistan",
     period: "Feb 2024 — 2025",
     description:
-      "Delivered Unity development for a services-based studio, working directly with client requirements on long-running builds — including Wenet (an AI-powered English-learning game with real-time voice-to-voice NPC conversations), a Solana blockchain integration, and a VR painting application.",
+      "Delivered Unity development for a services-based studio, working directly with client requirements on long-running game builds. Built a long-term kids' road-trip game with live map-based location tracking, a car wash and customization system, and multiple embedded mini-games. Shipped a blockchain integration using the Solana SDK and a VR painting application for Meta Quest.",
   },
   {
     index: "04",
@@ -43,6 +43,6 @@ export const milestones: Milestone[] = [
     location: "Lahore, Pakistan",
     period: "2025 — Present",
     description:
-      "Stepped into technical project management — scoping and planning client engagements, coordinating development across the team, and owning delivery from architecture through launch.",
+      "Scope and plan client engagements, coordinate development across the team, and own delivery from architecture through launch. Led delivery of Wenet, an AI-powered English-learning game, and Zanthalar, a real-time multiplayer card game built on Unity with a custom Node.js / Socket.IO backend — matchmaking, persistent profiles and low-latency networking.",
   },
 ];

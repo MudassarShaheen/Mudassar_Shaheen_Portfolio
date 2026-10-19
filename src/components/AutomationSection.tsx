@@ -100,30 +100,30 @@ const AutomationSection = () => {
           </div>
         </div>
 
-        {/* Demo Apps Section */}
-        <div className="mt-16">
-          <h3 className="text-2xl md:text-3xl font-bold font-display mb-8 text-center">
-            Live <span className="gradient-text">Demo Apps</span>
+        {/* Demo Apps — secondary side projects, kept compact so game work stays the focus */}
+        <div className="mt-12 md:mt-16 pt-8 border-t border-border">
+          <h3 className="text-xs font-display uppercase tracking-[0.25em] text-muted-foreground mb-5 text-center">
+            Side projects · Live demo apps
           </h3>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-4">
             {demoApps.map((app, index) => (
               <a 
                 key={index}
                 href={app.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass-card p-6 hover-glow group cursor-pointer"
+                className="glass-card p-4 hover-glow group cursor-pointer"
               >
-                <div className="flex items-start justify-between mb-3">
-                  <div className="p-2 rounded-lg bg-primary/20 border border-primary/30">
-                    <Zap className="w-5 h-5 text-primary" />
+                <div className="flex items-start justify-between mb-2">
+                  <div className="p-1.5 rounded-lg bg-primary/20 border border-primary/30">
+                    <Zap className="w-4 h-4 text-primary" />
                   </div>
                   <ExternalLink className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
-                <h4 className="text-lg font-bold font-display mb-2 group-hover:text-primary transition-colors">
+                <h4 className="text-base font-bold font-display mb-1 group-hover:text-primary transition-colors">
                   {app.title}
                 </h4>
-                <p className="text-sm text-muted-foreground font-body">
+                <p className="text-xs text-muted-foreground font-body">
                   {app.description}
                 </p>
               </a>
